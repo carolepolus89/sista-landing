@@ -359,6 +359,19 @@
 
   /* ── Footer ──────────────────────────────────────────── */
   footer{ background:var(--ink); color:var(--cream); padding:32px 0; }
+  #scroll-top{
+    position:fixed; bottom:28px; right:28px; z-index:999;
+    width:48px; height:48px; border-radius:50%;
+    background:var(--magenta); border:2.5px solid var(--ink);
+    color:var(--cream); cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:3px 3px 0 var(--ink);
+    opacity:0; pointer-events:none;
+    transition:opacity .25s, transform .25s cubic-bezier(.34,1.56,.64,1);
+    transform:translateY(12px);
+  }
+  #scroll-top.visible{ opacity:1; pointer-events:auto; transform:translateY(0); }
+  #scroll-top:hover{ transform:translateY(-3px) scale(1.1); background:var(--cobalt); }
   footer .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
   footer .kick{ font-size:11px; opacity:.7; }
 
@@ -665,6 +678,11 @@
 </section>
 
 <!-- ══ FOOTER ══════════════════════════════════════════════ -->
+<!-- Scroll to top -->
+<button id="scroll-top" aria-label="Retour en haut" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
 <footer>
   <div class="wrap">
     <span class="kick">SISTA · @sista.trive · Liège — par Carole Polus</span>
@@ -680,6 +698,11 @@
 </footer>
 
 <script>
+  const scrollBtn = document.getElementById('scroll-top');
+  window.addEventListener('scroll', () => {
+    scrollBtn.classList.toggle('visible', window.scrollY > 400);
+  });
+
   document.getElementById('signup-form').addEventListener('submit', function(e){
     e.preventDefault();
     var email = this.querySelector('[name="email"]').value;
