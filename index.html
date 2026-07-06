@@ -214,7 +214,7 @@
   .compare-card li::before{ content:"—"; position:absolute; left:0; opacity:.5; }
 
   /* ── Formats ─────────────────────────────────────────── */
-  .que-cest{ background:var(--cream); }
+  .que-cest{ background:var(--cream); padding-bottom:8px; }
   .que-cest > .wrap > p{ max-width:620px; font-size:16px; }
   .formats{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:32px; }
   .format-card{
@@ -231,7 +231,14 @@
   .format-card .spark-deco{ position:absolute; top:14px; right:14px; width:16px; height:16px; }
 
   /* Positionnement créatif */
-  .creative-tag{ transition:transform .2s cubic-bezier(.34,1.56,.64,1); cursor:default; }
+  .creative-tag{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:'Le Petit Cochon','Gloria Hallelujah',cursive;
+    font-size:13px; letter-spacing:.04em; text-transform:uppercase;
+    border:var(--border-main); border-radius:var(--radius-pill);
+    padding:10px 18px; cursor:default;
+    transition:transform .2s cubic-bezier(.34,1.56,.64,1);
+  }
   .creative-tag:hover{ transform:scale(1.12) rotate(-2deg); }
   /* ── Hover animations ──────────────────────────────────── */
   .compare-card{ transition:transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s; }
@@ -509,7 +516,7 @@
 </section>
 
 <!-- ══ EVENTS ══════════════════════════════════════════════ -->
-<section class="event" style="position:relative;overflow:hidden;">
+<section class="event" style="position:relative;overflow:hidden;padding-top:20px;">
   <svg style="position:absolute;top:32px;right:48px;width:20px;height:20px;" viewBox="0 0 24 24"><path d="M12 0C12.4 9.2 14.8 11.6 24 12 14.8 12.4 12.4 14.8 12 24 11.6 14.8 9.2 12.4 0 12 9.2 11.6 12.4 9.2 12 0Z" fill="#E63C90" opacity=".35"/></svg>
   <div class="wrap">
     <div class="kick" style="color:var(--magenta);">Les prochains rendez-vous</div>
