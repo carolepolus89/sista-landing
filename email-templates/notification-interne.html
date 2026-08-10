@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nouvelle réservation SISTA</title>
+</head>
+<body style="margin:0;padding:0;background-color:#EFF0E6;font-family:Helvetica, Arial, sans-serif;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#EFF0E6;padding:32px 16px;">
+  <tr>
+    <td align="center">
+      <table role="presentation" width="100%" style="max-width:560px;background-color:#ffffff;border:1.5px solid #241827;border-radius:20px;overflow:hidden;">
+
+        <!-- Header -->
+        <tr>
+          <td style="background-color:#E63C90;padding:22px 32px;">
+            <p style="margin:0;font-family:'Courier New', monospace;font-weight:bold;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#EEF0A6;">Nouveau paiement confirmé</p>
+            <h1 style="margin:6px 0 0;font-family:Georgia, serif;font-weight:bold;font-size:20px;color:#EFF0E6;">{{ params.eventName }}</h1>
+          </td>
+        </tr>
+
+        <!-- Body -->
+        <tr>
+          <td style="padding:28px 32px;">
+            <table role="presentation" width="100%" style="border-collapse:collapse;">
+              <tr>
+                <td style="padding:10px 0;border-bottom:1px solid #e5e0d8;font-size:13px;color:#241827;opacity:.6;">Nom</td>
+                <td style="padding:10px 0;border-bottom:1px solid #e5e0d8;font-size:14px;color:#241827;font-weight:bold;text-align:right;">{{ params.firstName }} {{ params.lastName }}</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 0;border-bottom:1px solid #e5e0d8;font-size:13px;color:#241827;opacity:.6;">Email</td>
+                <td style="padding:10px 0;border-bottom:1px solid #e5e0d8;font-size:14px;color:#241827;text-align:right;">{{ params.email }}</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 0;border-bottom:1px solid #e5e0d8;font-size:13px;color:#241827;opacity:.6;">Téléphone</td>
+                <td style="padding:10px 0;border-bottom:1px solid #e5e0d8;font-size:14px;color:#241827;text-align:right;">{{ params.phone }}</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 0;border-bottom:1px solid #e5e0d8;font-size:13px;color:#241827;opacity:.6;">Instagram</td>
+                <td style="padding:10px 0;border-bottom:1px solid #e5e0d8;font-size:14px;color:#241827;text-align:right;">{{ params.instagram }}</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 0;border-bottom:1px solid #e5e0d8;font-size:13px;color:#241827;opacity:.6;">Entreprise</td>
+                <td style="padding:10px 0;border-bottom:1px solid #e5e0d8;font-size:14px;color:#241827;font-weight:bold;text-align:right;">{{ params.companyName }}</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 0;border-bottom:1px solid #e5e0d8;font-size:13px;color:#241827;opacity:.6;">N° TVA</td>
+                <td style="padding:10px 0;border-bottom:1px solid #e5e0d8;font-size:14px;color:#241827;font-family:'Courier New',monospace;text-align:right;">{{ params.vatNumber }}</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 0;border-bottom:1px solid #e5e0d8;font-size:13px;color:#241827;opacity:.6;">Newsletter</td>
+                <td style="padding:10px 0;border-bottom:1px solid #e5e0d8;font-size:14px;color:#241827;text-align:right;">{{ params.newsletter }}</td>
+              </tr>
+              <tr>
+                <td style="padding:14px 0 0;font-size:13px;color:#241827;opacity:.6;">Montant payé</td>
+                <td style="padding:14px 0 0;font-size:18px;color:#2E4ED8;font-weight:bold;text-align:right;">{{ params.amountPaid }}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td style="background-color:#241827;padding:16px 32px;text-align:center;">
+            <p style="margin:0;font-family:'Courier New', monospace;font-size:10px;letter-spacing:.08em;color:#EFF0E6;opacity:.6;">
+              Notification automatique — SISTA
+            </p>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
