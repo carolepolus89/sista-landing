@@ -3,9 +3,21 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { email } = req.body;
+  let email;
+  try {
+    const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+    email = body?.email;
+  } catch (e) {
+    return res.status(400).json({ error: 'Body parse error', detail: e.message });
+  }
+
   if (!email || !email.includes('@')) {
     return res.status(400).json({ error: 'Email invalide' });
+  }
+
+  const apiKey = process.env.BREVO_API_KEY;
+  if (!apiKey) {
+    return res.status(500).json({ error: 'API key manquante' });
   }
 
   try {
@@ -14,27 +26,21 @@ export default async function handler(req, res) {
       headers: {
         'accept': 'application/json',
         'content-type': 'application/json',
-        'api-key': process.env.BREVO_API_KEY,
+        'api-key': apiKey,
       },
-      body: JSON.stringify({
-        email: email,
-        listIds: [7],
-        updateEnabled: true,
-      }),
+      body: JSON.stringify({ email, listIds: [7], updateEnabled: true }),
     });
 
-    if (response.ok || response.status === 204) {
+    const text = await response.text();
+    let data;
+    try { data = JSON.parse(text); } catch { data = text; }
+
+    if (response.ok || response.status === 204 || (data && data.code === 'duplicate_parameter')) {
       return res.status(200).json({ success: true });
     }
 
-    const data = await response.json();
-    // Contact already exists → still a success
-    if (data.code === 'duplicate_parameter') {
-      return res.status(200).json({ success: true });
-    }
-
-    return res.status(500).json({ error: 'Erreur Brevo', detail: data });
+    return res.status(500).json({ error: 'Brevo error', status: response.status, detail: data });
   } catch (err) {
-    return res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: 'fetch failed', detail: err.message });
   }
 }
