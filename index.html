@@ -677,12 +677,18 @@
     <div class="kick">Avant de réserver</div>
     <h2>Laisse ton email.<br>On s'occupe du reste.</h2>
     <p class="lead">Les places sont annoncées en avant-première à la liste. Tu seras prévenue dès que le prochain rendez-vous s'ouvre — avant tout le monde.</p>
-    <!-- TODO : remplacer l'action par l'endpoint Brevo -->
-    <form id="signup-form">
-      <input type="email" name="email" placeholder="ton@email.com" required>
+    <div id="sib-error-message" class="sib-form-message-panel" style="display:none;margin-bottom:12px;padding:12px 16px;background:#ffeded;border:1px solid #ff4949;border-radius:8px;color:#661d1d;font-size:14px;">
+      L'inscription n'a pas pu se faire. Contacte-moi via Insta si besoin 😊
+    </div>
+    <div id="sib-success-message" class="sib-form-message-panel" style="display:none;margin-bottom:12px;padding:12px 16px;background:#e7faf0;border:1px solid #13ce66;border-radius:8px;color:#085229;font-size:14px;">
+      Merci, ton inscription est confirmée. À très vite ✦
+    </div>
+    <form id="sib-form" method="POST" action="https://ea01b1c2.sibforms.com/serve/MUIFADoEDrPuk0R012s6q89r4W6NwBJjXrIlv0s-L6Wi351If9oMwzwKLtjlAJJn5Spne2ZsStK8W6zbLmj0EMRCciA8kZPcu2_sVD4BqWjBx263vglFR0xiAmcD3f3kyzcEIXR6w-x6A8nIq9M3M7txytr5F8o4BYNENA1lTJGS76AhASksjbcZI1T5nSEYJDXfnzdtg8ksj9yE" data-type="subscription">
+      <input type="email" name="EMAIL" placeholder="ton@email.com" required autocomplete="off">
+      <input type="text" name="email_address_check" value="" style="display:none;">
+      <input type="hidden" name="locale" value="fr">
       <button type="submit" class="btn btn-citron">Je veux être prévenue ✦</button>
     </form>
-    <p class="success-msg" id="success-msg">C'est noté. À très vite ✦</p>
     <p class="signup-note">Pas de spam. Juste les dates et les places quand ça s'ouvre.</p>
   </div>
 </section>
@@ -713,13 +719,13 @@
     scrollBtn.classList.toggle('visible', window.scrollY > 400);
   });
 
-  document.getElementById('signup-form').addEventListener('submit', function(e){
-    e.preventDefault();
-    var email = this.querySelector('[name="email"]').value;
-    console.log('Email soumis (TODO: envoyer à Brevo):', email);
-    document.getElementById('success-msg').style.display = 'block';
-    this.style.display = 'none';
-  });
+  window.REQUIRED_CODE_ERROR_MESSAGE = 'Veuillez choisir un code pays';
+  window.LOCALE = 'fr';
+  window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "Il y a une erreur dans les données encodées.";
+  window.REQUIRED_ERROR_MESSAGE = "Ce champ est obligatoire.";
+  window.GENERIC_INVALID_MESSAGE = "Il y a une erreur dans les données encodées.";
+  var AUTOHIDE = Boolean(0);
 </script>
+<script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
 </body>
 </html>
