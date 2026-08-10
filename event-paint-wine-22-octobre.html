@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atelier Paint & Wine · SISTA — 22 octobre, Liège</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232E4ED8'/><path d='M16 4C16.5 13.2 18.8 15.5 28 16 18.8 16.5 16.5 18.8 16 28 15.5 18.8 13.2 16.5 4 16 13.2 15.5 15.5 13.2 16 4Z' fill='%23E63C90'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ── Fonts locales ───────────────────────────────────── */
+  @font-face { font-family:'Ahsing'; src:url('fonts/ahsing-regular.otf') format('opentype'); font-weight:400 900; }
+  @font-face { font-family:'Le Petit Cochon'; src:url('fonts/nf-le-petit-cochon.ttf') format('truetype'); font-weight:400 900; }
+  @font-face { font-family:'Gloria Hallelujah'; src:url('fonts/gloriahallelujah.ttf') format('truetype'); font-weight:400; }
+  @font-face { font-family:'Bricolage Grotesque'; src:url('fonts/BricolageGrotesque-Regular.ttf') format('truetype'); font-weight:400; }
+  @font-face { font-family:'Bricolage Grotesque'; src:url('fonts/BricolageGrotesque-Medium.ttf') format('truetype'); font-weight:500; }
+  @font-face { font-family:'Bricolage Grotesque'; src:url('fonts/BricolageGrotesque-SemiBold.ttf') format('truetype'); font-weight:600; }
+  @font-face { font-family:'Bricolage Grotesque'; src:url('fonts/BricolageGrotesque-Bold.ttf') format('truetype'); font-weight:700; }
+  @font-face { font-family:'Bricolage Grotesque'; src:url('fonts/BricolageGrotesque-ExtraBold.ttf') format('truetype'); font-weight:800; }
+  @font-face { font-family:'Space Mono'; src:url('fonts/SpaceMono-Regular.ttf') format('truetype'); font-weight:400; }
+  @font-face { font-family:'Space Mono'; src:url('fonts/SpaceMono-Bold.ttf') format('truetype'); font-weight:700; }
+</style>
+<style>
+  :root{
+    --cobalt:#2E4ED8;
+    --magenta:#E63C90;
+    --periwinkle:#6154DB;
+    --blush:#FFE9F2;
+    --lilas:#CFC9F0;
+    --blue-powder:#9AC2E9;
+    --cream:#EFF0E6;
+    --lime:#B5D62A;
+    --citron:#EEF0A6;
+    --ink:#241827;
+    --border-main:1.5px solid var(--ink);
+    --radius-card:20px;
+    --radius-pill:999px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Hanken Grotesk', sans-serif;
+    line-height:1.65;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+  .wrap-narrow{max-width:760px;margin:0 auto;padding:0 24px;}
+
+  h1{ font-family:'Bricolage Grotesque', sans-serif; font-weight:800; font-size:54px; line-height:1.04; margin:6px 0 20px; }
+  h2{ font-family:'Bricolage Grotesque', sans-serif; font-weight:800; font-size:38px; line-height:1.08; margin:12px 0 20px; }
+  h3{ font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:21px; margin:10px 0 8px; line-height:1.15; }
+  .kick{ font-family:'Space Mono', monospace; font-weight:700; font-size:11px; letter-spacing:.18em; text-transform:uppercase; }
+  .gloria{ font-family:'Gloria Hallelujah',cursive; line-height:1.55; }
+
+  .logo{ display:inline-block; height:40px; }
+  .logo img{ height:100%; width:auto; display:block; }
+  .logo-fallback{ font-family:'Ahsing','Bricolage Grotesque',sans-serif; font-size:26px; font-weight:800; line-height:1; display:inline-flex; align-items:center; gap:6px; }
+  header{ padding:18px 0; border-bottom:var(--border-main); background:var(--cream); position:sticky; top:0; z-index:50; }
+  .header-inner{ display:flex; align-items:center; justify-content:space-between; }
+  .back-link{
+    font-family:'Space Mono',monospace; font-weight:700; font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    text-decoration:none; color:var(--ink); opacity:.7; display:inline-flex; align-items:center; gap:6px;
+  }
+  .back-link:hover{ opacity:1; }
+
+  .float-spark{ position:absolute; pointer-events:none; }
+
+  .btn{
+    font-family:'Hanken Grotesk',sans-serif; font-weight:700; font-size:15px; letter-spacing:.03em;
+    border:var(--border-main); border-radius:var(--radius-pill);
+    padding:16px 30px; cursor:pointer; display:inline-block;
+    text-decoration:none; transition:transform .18s cubic-bezier(.34,1.56,.64,1), box-shadow .18s;
+  }
+  .btn:hover{ transform:translateY(-3px) scale(1.03); box-shadow:0 6px 20px rgba(0,0,0,.15); }
+  .btn-citron{ background:var(--citron); color:var(--ink); }
+  .btn-magenta{ background:var(--magenta); color:var(--cream); }
+  .btn-block{ width:100%; text-align:center; display:block; }
+
+  .badge{
+    font-family:'Space Mono',monospace; font-weight:700; font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+    border:var(--border-main); border-radius:var(--radius-pill); padding:5px 12px; display:inline-flex; align-items:center; gap:5px;
+  }
+  .badge-lime{ background:var(--lime); }
+  .badge-magenta{ background:var(--magenta); color:var(--cream); border-color:var(--magenta); }
+
+  section{ padding:56px 0; }
+
+  /* ── Hero ────────────────────────────────────────────── */
+  .hero{
+    background:var(--periwinkle); color:var(--cream);
+    border-bottom:var(--border-main); padding:48px 0 56px;
+    position:relative; overflow:hidden;
+  }
+  .hero-grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:44px; align-items:center; }
+  .hero .kick{ color:var(--citron); }
+  .hero-badges{ display:flex; gap:8px; flex-wrap:wrap; margin:14px 0 22px; }
+  .hero p.lead{ font-size:16px; font-weight:500; opacity:.9; max-width:460px; margin-bottom:28px; line-height:1.65; }
+  .hero-photo{
+    border:var(--border-main); border-radius:var(--radius-card); overflow:hidden;
+    box-shadow:6px 8px 0 var(--ink); aspect-ratio:4/3;
+  }
+  .hero-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .hero-meta{ display:flex; flex-direction:column; gap:6px; margin-bottom:26px; }
+  .hero-meta-row{ display:flex; align-items:center; gap:10px; font-family:'Space Mono',monospace; font-size:13px; font-weight:700; }
+  .hero-meta-row svg{ flex:none; }
+
+  /* ── Pourquoi ────────────────────────────────────────── */
+  .pourquoi{ background:var(--blush); }
+  .pourquoi p{ font-size:16px; margin:0 0 14px; }
+  .pull-quote{
+    font-family:'Gloria Hallelujah',cursive; font-size:17px; line-height:1.6; color:var(--magenta);
+    border-left:3px solid var(--magenta); padding-left:18px; margin:24px 0 0;
+  }
+
+  /* ── Déroulé ─────────────────────────────────────────── */
+  .deroule{ background:var(--cream); }
+  .deroule-list{ margin-top:32px; display:flex; flex-direction:column; gap:0; }
+  .deroule-item{
+    display:flex; align-items:baseline; gap:20px; padding:20px 0; border-top:1.5px solid rgba(36,24,39,.15);
+  }
+  .deroule-item:last-child{ border-bottom:1.5px solid rgba(36,24,39,.15); }
+  .deroule-time{
+    font-family:'Space Mono',monospace; font-weight:700; font-size:13px; color:var(--magenta);
+    flex:none; width:80px;
+  }
+  .deroule-text{ font-size:16px; line-height:1.5; }
+  .deroule-text strong{ font-family:'Bricolage Grotesque',sans-serif; font-weight:700; }
+
+  /* ── Infos pratiques ─────────────────────────────────── */
+  .infos{ background:var(--cobalt); color:var(--cream); }
+  .infos .kick{ color:var(--citron); }
+  .infos-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:28px; }
+  .infos-card{
+    border:1.5px solid rgba(255,255,255,.35); border-radius:var(--radius-card); padding:22px; background:rgba(255,255,255,.06);
+  }
+  .infos-card .label{ font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--citron); margin-bottom:8px; display:block; }
+  .infos-card .value{ font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:20px; line-height:1.3; }
+  .infos-card .sub{ font-size:14px; opacity:.8; margin-top:6px; }
+
+  /* ── FAQ ─────────────────────────────────────────────── */
+  .faq{ background:var(--cream); }
+  .faq-item{ border-top:1.5px solid rgba(36,24,39,.15); padding:22px 0; }
+  .faq-item:last-child{ border-bottom:1.5px solid rgba(36,24,39,.15); }
+  .faq-item h3{ margin:0 0 8px; }
+  .faq-item p{ margin:0; font-size:15px; opacity:.85; }
+
+  /* ── CTA final ───────────────────────────────────────── */
+  .cta-final{ background:var(--magenta); color:var(--cream); text-align:center; border-top:var(--border-main); }
+  .cta-final .kick{ color:var(--citron); }
+  .cta-final h2{ max-width:600px; margin-left:auto; margin-right:auto; }
+  .cta-final p.lead{ max-width:480px; margin:0 auto 28px; opacity:.9; }
+  .cta-price{ font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:15px; margin-top:16px; opacity:.85; }
+
+  footer{ background:var(--ink); color:var(--cream); padding:28px 0; }
+  footer .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  footer .kick{ font-size:11px; opacity:.7; }
+
+  @media (max-width:768px){
+    h1{ font-size:36px; }
+    h2{ font-size:28px; }
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-photo{ order:-1; }
+    .infos-grid{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ═══════════════════════════════════════════ -->
+<header>
+  <div class="wrap header-inner">
+    <span class="logo" id="site-logo">
+      <img src="logo-sista.png" alt="Sista" onerror="this.parentElement.innerHTML='<span class=\'logo-fallback\'>Sista <svg width=\'14\' height=\'14\' viewBox=\'0 0 24 24\'><path d=\'M12 0C12.4 9.2 14.8 11.6 24 12 14.8 12.4 12.4 14.8 12 24 11.6 14.8 9.2 12.4 0 12 9.2 11.6 12.4 9.2 12 0Z\' fill=\'#B5D62A\'/></svg></span>'">
+    </span>
+    <a href="index.html" class="back-link">← Retour au site</a>
+  </div>
+</header>
+
+<!-- ══ HERO ══════════════════════════════════════════════ -->
+<section class="hero">
+  <svg class="float-spark" style="top:24px;right:60px;width:26px;height:26px;" viewBox="0 0 24 24"><path d="M12 0C12.4 9.2 14.8 11.6 24 12 14.8 12.4 12.4 14.8 12 24 11.6 14.8 9.2 12.4 0 12 9.2 11.6 12.4 9.2 12 0Z" fill="#B5D62A"/></svg>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kick">Apéro Paint &amp; Wine · Event SISTA #1</div>
+      <div class="hero-badges">
+        <span class="badge badge-lime">Petits groupes</span>
+        <span class="badge badge-magenta">⚡ Places limitées</span>
+      </div>
+      <h1>Un verre de vin, un pinceau, et des vraies conversations.</h1>
+      <p class="lead">Une soirée pour peindre sans pression, siroter un verre, et rencontrer d'autres entrepreneures liégeoises — sans tour de table, sans pitch. Juste l'excuse parfaite pour créer du lien.</p>
+
+      <div class="hero-meta">
+        <div class="hero-meta-row">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M3 9h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          Mercredi 22 octobre · 18h–22h
+        </div>
+        <div class="hero-meta-row">
+          <svg width="14" height="16" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.79 0 1 1.79 1 4c0 2.5 4 8 4 8s4-5.5 4-8c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 5 2.5a1.5 1.5 0 0 1 0 3z" fill="currentColor"/></svg>
+          Bord de Meuse · Liège
+        </div>
+        <div class="hero-meta-row">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          50€ HTVA — tout compris (matériel, vin, ambiance)
+        </div>
+      </div>
+
+      <a href="reservation-paint-wine-22-octobre.html" class="btn btn-citron">Réserver ma place ✦</a>
+    </div>
+    <div class="hero-photo">
+      <img src="event-art-wine.jpg.webp" alt="Atelier Paint & Wine SISTA" onerror="this.style.display='none'">
+    </div>
+  </div>
+</section>
+
+<!-- ══ POURQUOI ═══════════════════════════════════════════ -->
+<section class="pourquoi">
+  <div class="wrap-narrow">
+    <div class="kick" style="color:var(--magenta);">Pourquoi cet atelier</div>
+    <h2>Pas de tour de table.<br>Juste un prétexte créatif.</h2>
+    <p>On connaît toutes les événements réseau où on répète son pitch en boucle. Ici, c'est l'inverse : un pinceau, une toile, un verre de vin — et les conversations arrivent toutes seules, sans qu'on ait à les forcer.</p>
+    <p>Tu n'as besoin d'aucune expérience en peinture. Ce n'est pas un cours d'art, c'est une excuse pour se retrouver, créer quelque chose ensemble, et repartir avec des liens qui dépassent la carte de visite.</p>
+    <div class="pull-quote"><strong>Petit groupe, grande intimité</strong> — le format est volontairement pensé pour qu'on ait le temps de vraiment se parler.</div>
+  </div>
+</section>
+
+<!-- ══ DÉROULÉ ═════════════════════════════════════════════ -->
+<section class="deroule">
+  <div class="wrap-narrow">
+    <div class="kick" style="color:var(--magenta);">Le déroulé</div>
+    <h2>Une soirée, sans pression.</h2>
+    <div class="deroule-list">
+      <div class="deroule-item">
+        <div class="deroule-time">18H00</div>
+        <div class="deroule-text"><strong>Accueil</strong> — installation, premier verre, présentations informelles</div>
+      </div>
+      <div class="deroule-item">
+        <div class="deroule-time">18H20</div>
+        <div class="deroule-text"><strong>Atelier peinture</strong> — pas besoin de savoir peindre, tout le monde repart avec sa toile</div>
+      </div>
+      <div class="deroule-item">
+        <div class="deroule-time">20H00</div>
+        <div class="deroule-text"><strong>Papotage libre</strong> — on continue à discuter, on refait le monde entrepreneurial liégeois</div>
+      </div>
+      <div class="deroule-item">
+        <div class="deroule-time">22H00</div>
+        <div class="deroule-text"><strong>Fin</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ INFOS PRATIQUES ═════════════════════════════════════ -->
+<section class="infos">
+  <div class="wrap">
+    <div class="kick">Infos pratiques</div>
+    <h2>Ce qu'il faut savoir.</h2>
+    <div class="infos-grid">
+      <div class="infos-card">
+        <span class="label">Date &amp; heure</span>
+        <div class="value">Mer 22 octobre, 18h–22h</div>
+      </div>
+      <div class="infos-card">
+        <span class="label">Lieu</span>
+        <div class="value">Bord de Meuse</div>
+        <div class="sub">Liège</div>
+      </div>
+      <div class="infos-card">
+        <span class="label">Prix</span>
+        <div class="value">50€ HTVA</div>
+        <div class="sub">Matériel, vin et ambiance inclus</div>
+      </div>
+      <div class="infos-card">
+        <span class="label">Places</span>
+        <div class="value">Groupe limité</div>
+        <div class="sub">Réservation obligatoire à l'avance</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ═════════════════════════════════════════════════ -->
+<section class="faq">
+  <div class="wrap-narrow">
+    <div class="kick" style="color:var(--magenta);">Questions fréquentes</div>
+    <h2>Encore des questions ?</h2>
+    <div class="faq-item">
+      <h3>Je n'ai jamais peint de ma vie, c'est grave ?</h3>
+      <p>Pas du tout — l'atelier est pensé pour des débutantes complètes. L'idée n'est pas de faire un chef-d'œuvre, mais de passer un bon moment.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Qu'est-ce qui est inclus dans les 50€ ?</h3>
+      <p>Tout le matériel de peinture, ta toile à emporter, un verre de vin (ou une alternative sans alcool sur demande), et l'accès à l'espace Bord de Meuse.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Je peux venir seule ?</h3>
+      <p>C'est même l'idée — la majorité des inscrites viennent seules. C'est justement pensé pour créer des liens avec des femmes qu'on ne connaît pas encore.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Que se passe-t-il après mon paiement ?</h3>
+      <p>Tu reçois une confirmation par email avec tous les détails pratiques. Ta place est réservée dès que le paiement est validé.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA FINAL ═══════════════════════════════════════════ -->
+<section class="cta-final">
+  <div class="wrap">
+    <div class="kick">Dernière étape</div>
+    <h2>Prête à peindre, boire un verre, et te faire des copines ?</h2>
+    <p class="lead">Les places sont limitées — réserve la tienne avant qu'il n'y en ait plus.</p>
+    <a href="reservation-paint-wine-22-octobre.html" class="btn btn-citron">Réserver ma place — 50€ HTVA ✦</a>
+    <div class="cta-price">Paiement sécurisé via Stripe</div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══════════════════════════════════════════════ -->
+<footer>
+  <div class="wrap">
+    <span class="kick">SISTA · @sista.tribe · Liège — par Carole Polus</span>
+    <a href="https://www.instagram.com/sista.tribe/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;">
+      <svg style="width:20px;height:20px;" viewBox="0 0 24 24" fill="none">
+        <rect x="2" y="2" width="20" height="20" rx="6" stroke="#B5D62A" stroke-width="1.6"/>
+        <circle cx="12" cy="12" r="4.2" stroke="#B5D62A" stroke-width="1.6"/>
+        <circle cx="17.4" cy="6.6" r="1.1" fill="#B5D62A"/>
+      </svg>
+      <span class="kick" style="color:var(--lime);">Suis-nous</span>
+    </a>
+  </div>
+</footer>
+
+</body>
+</html>

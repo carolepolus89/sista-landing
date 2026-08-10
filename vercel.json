@@ -2,6 +2,12 @@
   "functions": {
     "api/subscribe.js": {
       "memory": 128
+    },
+    "api/reserve.js": {
+      "memory": 128
+    },
+    "api/stripe-webhook.js": {
+      "memory": 128
     }
   }
 }

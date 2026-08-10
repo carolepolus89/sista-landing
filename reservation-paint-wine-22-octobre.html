@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Réservation — Atelier Paint & Wine · SISTA</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232E4ED8'/><path d='M16 4C16.5 13.2 18.8 15.5 28 16 18.8 16.5 16.5 18.8 16 28 15.5 18.8 13.2 16.5 4 16 13.2 15.5 15.5 13.2 16 4Z' fill='%23E63C90'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family:'Ahsing'; src:url('fonts/ahsing-regular.otf') format('opentype'); font-weight:400 900; }
+  @font-face { font-family:'Bricolage Grotesque'; src:url('fonts/BricolageGrotesque-Regular.ttf') format('truetype'); font-weight:400; }
+  @font-face { font-family:'Bricolage Grotesque'; src:url('fonts/BricolageGrotesque-Medium.ttf') format('truetype'); font-weight:500; }
+  @font-face { font-family:'Bricolage Grotesque'; src:url('fonts/BricolageGrotesque-SemiBold.ttf') format('truetype'); font-weight:600; }
+  @font-face { font-family:'Bricolage Grotesque'; src:url('fonts/BricolageGrotesque-Bold.ttf') format('truetype'); font-weight:700; }
+  @font-face { font-family:'Bricolage Grotesque'; src:url('fonts/BricolageGrotesque-ExtraBold.ttf') format('truetype'); font-weight:800; }
+  @font-face { font-family:'Space Mono'; src:url('fonts/SpaceMono-Regular.ttf') format('truetype'); font-weight:400; }
+  @font-face { font-family:'Space Mono'; src:url('fonts/SpaceMono-Bold.ttf') format('truetype'); font-weight:700; }
+</style>
+<style>
+  :root{
+    --cobalt:#2E4ED8;
+    --magenta:#E63C90;
+    --periwinkle:#6154DB;
+    --blush:#FFE9F2;
+    --lilas:#CFC9F0;
+    --cream:#EFF0E6;
+    --lime:#B5D62A;
+    --citron:#EEF0A6;
+    --ink:#241827;
+    --border-main:1.5px solid var(--ink);
+    --radius-card:20px;
+    --radius-pill:999px;
+  }
+  *{box-sizing:border-box;}
+  body{ margin:0; background:var(--cream); color:var(--ink); font-family:'Hanken Grotesk', sans-serif; line-height:1.6; }
+  .wrap{max-width:680px;margin:0 auto;padding:0 24px;}
+
+  h1{ font-family:'Bricolage Grotesque', sans-serif; font-weight:800; font-size:34px; line-height:1.1; margin:6px 0 10px; }
+  h2{ font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:18px; margin:0 0 4px; }
+  .kick{ font-family:'Space Mono', monospace; font-weight:700; font-size:11px; letter-spacing:.18em; text-transform:uppercase; }
+
+  .logo{ display:inline-block; height:40px; }
+  .logo img{ height:100%; width:auto; display:block; }
+  .logo-fallback{ font-family:'Ahsing','Bricolage Grotesque',sans-serif; font-size:26px; font-weight:800; line-height:1; display:inline-flex; align-items:center; gap:6px; }
+  header{ padding:18px 0; border-bottom:var(--border-main); background:var(--cream); }
+  .header-inner{ display:flex; align-items:center; justify-content:space-between; }
+  .back-link{
+    font-family:'Space Mono',monospace; font-weight:700; font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    text-decoration:none; color:var(--ink); opacity:.7;
+  }
+  .back-link:hover{ opacity:1; }
+
+  section{ padding:40px 0 64px; }
+
+  .recap{
+    background:var(--cobalt); color:var(--cream);
+    border:var(--border-main); border-radius:var(--radius-card);
+    padding:22px 26px; margin-bottom:32px;
+  }
+  .recap .kick{ color:var(--citron); margin-bottom:8px; }
+  .recap-row{ display:flex; align-items:center; gap:10px; font-family:'Space Mono',monospace; font-size:13px; font-weight:700; margin-top:6px; }
+  .recap-row svg{ flex:none; }
+
+  form{ display:flex; flex-direction:column; gap:18px; }
+  fieldset{ border:none; padding:0; margin:0; display:flex; flex-direction:column; gap:14px; }
+  legend{
+    font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:15px;
+    padding:0; margin-bottom:4px;
+  }
+  .field{ display:flex; flex-direction:column; gap:6px; }
+  .field label{ font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; opacity:.75; }
+  .field label .opt{ text-transform:none; letter-spacing:0; opacity:.7; font-family:'Hanken Grotesk',sans-serif; }
+  .field input[type="text"], .field input[type="email"], .field input[type="tel"]{
+    font-family:'Hanken Grotesk',sans-serif; font-size:15px;
+    padding:13px 16px; border:var(--border-main); border-radius:12px;
+    background:#fff; color:var(--ink);
+  }
+  .field input:focus{ outline:2px solid var(--periwinkle); outline-offset:1px; }
+  .row-2{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+
+  .checkbox-row{ display:flex; align-items:flex-start; gap:10px; font-size:14px; }
+  .checkbox-row input{ margin-top:3px; flex:none; width:16px; height:16px; }
+
+  .divider{ border-top:1.5px solid rgba(36,24,39,.15); margin:6px 0; }
+
+  .btn{
+    font-family:'Hanken Grotesk',sans-serif; font-weight:700; font-size:15px; letter-spacing:.03em;
+    border:var(--border-main); border-radius:var(--radius-pill);
+    padding:16px 30px; cursor:pointer; display:block; width:100%; text-align:center;
+    text-decoration:none; transition:transform .18s cubic-bezier(.34,1.56,.64,1), box-shadow .18s;
+    background:var(--magenta); color:var(--cream);
+  }
+  .btn:hover{ transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,0,0,.15); }
+  .btn:disabled{ opacity:.6; cursor:default; transform:none; box-shadow:none; }
+
+  .form-note{ font-size:13px; opacity:.65; text-align:center; margin-top:4px; }
+
+  #error-message, #loading-message{
+    display:none; margin-bottom:4px; padding:12px 16px; border-radius:10px; font-size:14px;
+  }
+  #error-message{ background:#ffeded; border:1px solid #ff4949; color:#661d1d; }
+  #loading-message{ background:var(--blush); color:var(--ink); display:none; text-align:center; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-inner">
+    <span class="logo" id="site-logo">
+      <img src="logo-sista.png" alt="Sista" onerror="this.parentElement.innerHTML='<span class=\'logo-fallback\'>Sista <svg width=\'14\' height=\'14\' viewBox=\'0 0 24 24\'><path d=\'M12 0C12.4 9.2 14.8 11.6 24 12 14.8 12.4 12.4 14.8 12 24 11.6 14.8 9.2 12.4 0 12 9.2 11.6 12.4 9.2 12 0Z\' fill=\'#B5D62A\'/></svg></span>'">
+    </span>
+    <a href="event-paint-wine-22-octobre.html" class="back-link">← Retour à l'event</a>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="kick" style="color:var(--magenta);">Réservation</div>
+    <h1>Atelier Paint &amp; Wine</h1>
+
+    <div class="recap">
+      <div class="kick">Rappel</div>
+      <div class="recap-row">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M3 9h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        Mercredi 22 octobre · 18h–22h
+      </div>
+      <div class="recap-row">
+        <svg width="14" height="16" viewBox="0 0 10 12" fill="none"><path d="M5 0C2.79 0 1 1.79 1 4c0 2.5 4 8 4 8s4-5.5 4-8c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 5 2.5a1.5 1.5 0 0 1 0 3z" fill="currentColor"/></svg>
+        Bord de Meuse · Liège
+      </div>
+      <div class="recap-row">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        18h20–20h atelier peinture · 20h–22h papotage libre
+      </div>
+      <div class="recap-row">50€ HTVA (60,50€ TTC) — matériel et vin inclus</div>
+    </div>
+
+    <div id="error-message"></div>
+    <div id="loading-message">Un instant, on prépare ton paiement…</div>
+
+    <form id="reservation-form">
+      <fieldset>
+        <legend>Tes informations</legend>
+        <div class="row-2">
+          <div class="field">
+            <label for="firstName">Prénom *</label>
+            <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
+          </div>
+          <div class="field">
+            <label for="lastName">Nom *</label>
+            <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="phone">Téléphone <span class="opt">(optionnel)</span></label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel">
+        </div>
+        <div class="field">
+          <label for="instagram">Instagram <span class="opt">(optionnel)</span></label>
+          <input type="text" id="instagram" name="instagram" placeholder="@toncompte">
+        </div>
+      </fieldset>
+
+      <div class="divider"></div>
+
+      <fieldset>
+        <legend>Facturation</legend>
+        <div class="field">
+          <label for="companyName">Nom de l'entreprise *</label>
+          <input type="text" id="companyName" name="companyName" required>
+        </div>
+        <div class="field">
+          <label for="vatNumber">N° de TVA *</label>
+          <input type="text" id="vatNumber" name="vatNumber" required placeholder="BE0123456789">
+        </div>
+      </fieldset>
+
+      <div class="divider"></div>
+
+      <label class="checkbox-row">
+        <input type="checkbox" id="newsletter" name="newsletter">
+        <span>Je veux recevoir les prochaines dates SISTA par email.</span>
+      </label>
+
+      <button type="submit" class="btn" id="submit-btn">Continuer vers le paiement — 50€ HTVA (60,50€ TTC)</button>
+      <p class="form-note">Tu seras redirigée vers Stripe pour finaliser ton paiement en toute sécurité.</p>
+    </form>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('reservation-form');
+  const errorEl = document.getElementById('error-message');
+  const loadingEl = document.getElementById('loading-message');
+  const submitBtn = document.getElementById('submit-btn');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    errorEl.style.display = 'none';
+    submitBtn.disabled = true;
+    loadingEl.style.display = 'block';
+
+    const data = Object.fromEntries(new FormData(form).entries());
+    data.newsletter = form.querySelector('#newsletter').checked;
+    data.event = 'Atelier Paint & Wine — SISTA 22 octobre';
+
+    try {
+      const res = await fetch('/api/reserve', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const result = await res.json();
+      if (!res.ok || !result.url) throw new Error('erreur');
+      window.location.href = result.url;
+    } catch (err) {
+      loadingEl.style.display = 'none';
+      errorEl.textContent = "Un souci est survenu lors de l'enregistrement. Réessaie, ou contacte-moi via Insta si ça persiste.";
+      errorEl.style.display = 'block';
+      submitBtn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
