@@ -182,7 +182,7 @@ export default async function handler(req, res) {
     firstName: safe.firstName,
     lastName: safe.lastName,
     eventName: safe.eventName,
-    eventDate: 'Mercredi 22 octobre, 18h–22h',
+    eventDate: 'Jeudi 22 octobre, 18h–22h',
     eventLocation: 'Bord de Meuse, Liège',
   };
 
