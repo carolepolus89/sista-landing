@@ -9,14 +9,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  @font-face { font-family:'Bricolage Grotesque'; src:url('fonts/BricolageGrotesque-ExtraBold.ttf') format('truetype'); font-weight:800; }
-  @font-face { font-family:'Bricolage Grotesque'; src:url('fonts/BricolageGrotesque-Bold.ttf') format('truetype'); font-weight:700; }
   @font-face { font-family:'Space Mono'; src:url('fonts/SpaceMono-Regular.ttf') format('truetype'); font-weight:400; }
 
   :root{
     --cobalt:#2E4ED8;
     --magenta:#E63C90;
-    --lime:#B5D62A;
     --citron:#EEF0A6;
     --cream:#EFF0E6;
     --ink:#241827;
@@ -27,12 +24,12 @@
 
   body {
     min-height:100vh;
-    background:var(--ink);
+    background:var(--cobalt);
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    padding:40px 20px 60px;
+    padding:48px 20px 64px;
     font-family:'Hanken Grotesk', sans-serif;
   }
 
@@ -42,55 +39,42 @@
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:0;
   }
 
-  /* ── Logo mark ── */
-  .logo-mark {
-    width:72px;
-    height:72px;
-    margin-bottom:20px;
-  }
-
-  /* ── Name ── */
-  h1 {
-    font-family:'Bricolage Grotesque', sans-serif;
-    font-weight:800;
-    font-size:38px;
-    color:var(--cream);
-    letter-spacing:.06em;
-    line-height:1;
-    margin-bottom:10px;
-    text-align:center;
+  /* ── Logo ── */
+  .logo-img {
+    width:clamp(160px, 50vw, 210px);
+    margin-bottom:28px;
+    display:block;
   }
 
   /* ── Tagline ── */
   .tagline-main {
-    font-family:'Bricolage Grotesque', sans-serif;
-    font-weight:800;
-    font-size:clamp(17px, 4.5vw, 22px);
+    font-family:'Hanken Grotesk', sans-serif;
+    font-weight:700;
+    font-size:clamp(15px, 4vw, 19px);
     color:var(--cream);
     text-align:center;
-    line-height:1.25;
-    margin-bottom:10px;
+    line-height:1.3;
+    margin-bottom:8px;
   }
   .tagline {
     font-family:'Space Mono', monospace;
     font-size:10px;
     color:var(--cream);
-    opacity:.4;
+    opacity:.45;
     letter-spacing:.07em;
     text-transform:uppercase;
     text-align:center;
-    margin-bottom:40px;
-    line-height:1.8;
+    margin-bottom:44px;
+    line-height:1.9;
   }
 
   /* ── Buttons ── */
   .links {
     display:flex;
     flex-direction:column;
-    gap:14px;
+    gap:12px;
     width:100%;
   }
 
@@ -100,75 +84,64 @@
     justify-content:space-between;
     gap:12px;
     width:100%;
-    padding:18px 24px;
+    padding:17px 22px;
     border-radius:16px;
-    border:2px solid var(--ink);
     text-decoration:none;
-    font-family:'Bricolage Grotesque', sans-serif;
+    font-family:'Hanken Grotesk', sans-serif;
     font-weight:700;
     font-size:16px;
     cursor:pointer;
-    position:relative;
-    box-shadow:4px 4px 0 rgba(255,255,255,.12);
-    transition:transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s;
+    transition:transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s, filter .2s;
     outline:none;
+    border:none;
   }
 
   .link-btn:hover, .link-btn:focus-visible {
     transform:translateY(-3px) scale(1.02);
-    box-shadow:6px 8px 0 rgba(255,255,255,.18);
+    filter:brightness(1.06);
   }
-
   .link-btn:active {
     transform:translateY(0) scale(.99);
-    box-shadow:2px 2px 0 rgba(255,255,255,.1);
+    filter:brightness(.97);
   }
 
-  /* Couleurs par bouton */
-  .btn-cobalt  { background:var(--cobalt);  color:var(--cream); border-color:rgba(255,255,255,.08); }
-  .btn-magenta { background:var(--magenta); color:var(--cream); border-color:rgba(255,255,255,.08); }
-  .btn-lime    { background:var(--lime);    color:var(--ink);   border-color:rgba(36,24,39,.15); }
-  .btn-lilas   { background:var(--lilas);   color:var(--ink);   border-color:rgba(36,24,39,.1); }
-  .btn-outline { background:transparent; color:var(--cream); border-color:rgba(255,255,255,.2); }
+  .btn-cream   { background:var(--cream);   color:var(--ink); }
+  .btn-magenta { background:var(--magenta); color:var(--cream); }
+  .btn-citron  { background:var(--citron);  color:var(--ink); }
+  .btn-glass   { background:rgba(255,255,255,.14); color:var(--cream); border:1.5px solid rgba(255,255,255,.28); }
 
   .btn-label {
     display:flex;
     flex-direction:column;
     gap:2px;
   }
-
   .btn-name {
     font-size:16px;
     line-height:1.2;
   }
-
   .btn-sub {
     font-family:'Space Mono', monospace;
     font-size:10px;
     font-weight:400;
-    letter-spacing:.05em;
-    opacity:.65;
+    letter-spacing:.04em;
+    opacity:.6;
     text-transform:uppercase;
   }
-
   .btn-icon {
     flex-shrink:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    opacity:.8;
+    opacity:.75;
   }
 
   /* ── Footer ── */
   footer {
-    margin-top:52px;
+    margin-top:48px;
     text-align:center;
   }
   footer p {
     font-family:'Space Mono', monospace;
     font-size:10px;
     color:var(--cream);
-    opacity:.28;
+    opacity:.25;
     letter-spacing:.06em;
     text-transform:uppercase;
     line-height:1.8;
@@ -179,21 +152,17 @@
 
 <div class="card">
 
-  <!-- Logo mark -->
-  <svg class="logo-mark" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-    <rect width="72" height="72" rx="18" fill="#2E4ED8"/>
-    <path d="M36 8C36.9 27.4 40.6 31.1 60 36 40.6 40.9 36.9 44.6 36 64 35.1 44.6 31.4 40.9 12 36 31.4 31.1 35.1 27.4 36 8Z" fill="#E63C90"/>
-  </svg>
+  <img class="logo-img"
+       src="logo%20sista%20blanc%20-%20fond%20transp.png"
+       alt="SISTA">
 
-  <h1>SISTA</h1>
-
-  <p class="tagline-main">Les copines business<br>que tu n'as pas encore.</p>
+  <p class="tagline-main">Les copines business que tu n'as pas encore.</p>
   <p class="tagline">Rendez-vous mensuels · Liège<br>Pas de pitch. Pas de tour de table.</p>
 
   <div class="links">
 
     <!-- 1. Site web -->
-    <a class="link-btn btn-cobalt" href="https://sista-landing.vercel.app" target="_blank" rel="noopener">
+    <a class="link-btn btn-cream" href="https://sista-landing.vercel.app" target="_blank" rel="noopener">
       <span class="btn-label">
         <span class="btn-name">Notre site web</span>
         <span class="btn-sub">Concept · Events · Lieu</span>
@@ -219,8 +188,7 @@
     </a>
 
     <!-- 3. Réservation Paint & Wine -->
-    <!-- ⚠️ Remplace le href="#" ci-dessous par ton vrai lien de réservation -->
-    <a class="link-btn btn-lime" href="event-paint-wine-22-octobre.html" target="_blank" rel="noopener">
+    <a class="link-btn btn-citron" href="event-paint-wine-22-octobre.html" target="_blank" rel="noopener">
       <span class="btn-label">
         <span class="btn-name">Réserver ma place</span>
         <span class="btn-sub">Paint &amp; Wine · 22 octobre · Liège</span>
@@ -232,9 +200,8 @@
       </span>
     </a>
 
-
     <!-- 4. Mailing list -->
-    <a class="link-btn btn-lilas" href="https://sista-landing.vercel.app/#signup">
+    <a class="link-btn btn-glass" href="https://sista-landing.vercel.app/#signup">
       <span class="btn-label">
         <span class="btn-name">Être prévenue</span>
         <span class="btn-sub">Reçois les prochains events en avant-première</span>
