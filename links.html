@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SISTA · Liens</title>
+<meta name="description" content="Le rendez-vous mensuel des entrepreneures · Liège">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232E4ED8'/><path d='M16 4C16.5 13.2 18.8 15.5 28 16 18.8 16.5 16.5 18.8 16 28 15.5 18.8 13.2 16.5 4 16 13.2 15.5 15.5 13.2 16 4Z' fill='%23E63C90'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family:'Bricolage Grotesque'; src:url('fonts/BricolageGrotesque-ExtraBold.ttf') format('truetype'); font-weight:800; }
+  @font-face { font-family:'Bricolage Grotesque'; src:url('fonts/BricolageGrotesque-Bold.ttf') format('truetype'); font-weight:700; }
+  @font-face { font-family:'Space Mono'; src:url('fonts/SpaceMono-Regular.ttf') format('truetype'); font-weight:400; }
+
+  :root{
+    --cobalt:#2E4ED8;
+    --magenta:#E63C90;
+    --lime:#B5D62A;
+    --citron:#EEF0A6;
+    --cream:#EFF0E6;
+    --ink:#241827;
+    --lilas:#CFC9F0;
+  }
+
+  * { box-sizing:border-box; margin:0; padding:0; }
+
+  body {
+    min-height:100vh;
+    background:var(--ink);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:40px 20px 60px;
+    font-family:'Hanken Grotesk', sans-serif;
+  }
+
+  .card {
+    width:100%;
+    max-width:420px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:0;
+  }
+
+  /* ── Logo mark ── */
+  .logo-mark {
+    width:72px;
+    height:72px;
+    margin-bottom:20px;
+  }
+
+  /* ── Name ── */
+  h1 {
+    font-family:'Bricolage Grotesque', sans-serif;
+    font-weight:800;
+    font-size:38px;
+    color:var(--cream);
+    letter-spacing:.06em;
+    line-height:1;
+    margin-bottom:10px;
+    text-align:center;
+  }
+
+  /* ── Tagline ── */
+  .tagline {
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    color:var(--cream);
+    opacity:.5;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    text-align:center;
+    margin-bottom:44px;
+    line-height:1.6;
+  }
+
+  /* ── Buttons ── */
+  .links {
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    width:100%;
+  }
+
+  .link-btn {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    width:100%;
+    padding:18px 24px;
+    border-radius:16px;
+    border:2px solid var(--ink);
+    text-decoration:none;
+    font-family:'Bricolage Grotesque', sans-serif;
+    font-weight:700;
+    font-size:16px;
+    cursor:pointer;
+    position:relative;
+    box-shadow:4px 4px 0 rgba(255,255,255,.12);
+    transition:transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s;
+    outline:none;
+  }
+
+  .link-btn:hover, .link-btn:focus-visible {
+    transform:translateY(-3px) scale(1.02);
+    box-shadow:6px 8px 0 rgba(255,255,255,.18);
+  }
+
+  .link-btn:active {
+    transform:translateY(0) scale(.99);
+    box-shadow:2px 2px 0 rgba(255,255,255,.1);
+  }
+
+  /* Couleurs par bouton */
+  .btn-cobalt  { background:var(--cobalt);  color:var(--cream); border-color:rgba(255,255,255,.08); }
+  .btn-magenta { background:var(--magenta); color:var(--cream); border-color:rgba(255,255,255,.08); }
+  .btn-lime    { background:var(--lime);    color:var(--ink);   border-color:rgba(36,24,39,.15); }
+  .btn-lilas   { background:var(--lilas);   color:var(--ink);   border-color:rgba(36,24,39,.1); }
+
+  .btn-label {
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+  }
+
+  .btn-name {
+    font-size:16px;
+    line-height:1.2;
+  }
+
+  .btn-sub {
+    font-family:'Space Mono', monospace;
+    font-size:10px;
+    font-weight:400;
+    letter-spacing:.05em;
+    opacity:.65;
+    text-transform:uppercase;
+  }
+
+  .btn-icon {
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:.8;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top:52px;
+    text-align:center;
+  }
+  footer p {
+    font-family:'Space Mono', monospace;
+    font-size:10px;
+    color:var(--cream);
+    opacity:.28;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    line-height:1.8;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <!-- Logo mark -->
+  <svg class="logo-mark" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+    <rect width="72" height="72" rx="18" fill="#2E4ED8"/>
+    <path d="M36 8C36.9 27.4 40.6 31.1 60 36 40.6 40.9 36.9 44.6 36 64 35.1 44.6 31.4 40.9 12 36 31.4 31.1 35.1 27.4 36 8Z" fill="#E63C90"/>
+  </svg>
+
+  <h1>SISTA</h1>
+
+  <p class="tagline">
+    Le rendez-vous mensuel<br>des entrepreneures · Liège
+  </p>
+
+  <div class="links">
+
+    <!-- 1. Site web -->
+    <a class="link-btn btn-cobalt" href="https://sista-landing.vercel.app" target="_blank" rel="noopener">
+      <span class="btn-label">
+        <span class="btn-name">Notre site web</span>
+        <span class="btn-sub">Concept · Events · Lieu</span>
+      </span>
+      <span class="btn-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/>
+        </svg>
+      </span>
+    </a>
+
+    <!-- 2. Instagram -->
+    <a class="link-btn btn-magenta" href="https://www.instagram.com/sista.tribe/" target="_blank" rel="noopener">
+      <span class="btn-label">
+        <span class="btn-name">@sista.tribe</span>
+        <span class="btn-sub">Suis-nous sur Instagram</span>
+      </span>
+      <span class="btn-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/>
+        </svg>
+      </span>
+    </a>
+
+    <!-- 3. Réservation Paint & Wine -->
+    <!-- ⚠️ Remplace le href="#" ci-dessous par ton vrai lien de réservation -->
+    <a class="link-btn btn-lime" href="#" target="_blank" rel="noopener">
+      <span class="btn-label">
+        <span class="btn-name">Réserver ma place</span>
+        <span class="btn-sub">Paint &amp; Wine · 22 octobre · Liège</span>
+      </span>
+      <span class="btn-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 12v7a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7"/><polyline points="16 2 22 2 22 8"/><line x1="11" y1="13" x2="22" y2="2"/>
+        </svg>
+      </span>
+    </a>
+
+  </div>
+</div>
+
+<footer>
+  <p>SISTA · par Carole Polus · Liège</p>
+</footer>
+
+</body>
+</html>
