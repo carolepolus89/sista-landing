@@ -65,16 +65,25 @@
   }
 
   /* ── Tagline ── */
+  .tagline-main {
+    font-family:'Bricolage Grotesque', sans-serif;
+    font-weight:800;
+    font-size:clamp(17px, 4.5vw, 22px);
+    color:var(--cream);
+    text-align:center;
+    line-height:1.25;
+    margin-bottom:10px;
+  }
   .tagline {
     font-family:'Space Mono', monospace;
-    font-size:11px;
+    font-size:10px;
     color:var(--cream);
-    opacity:.5;
-    letter-spacing:.08em;
+    opacity:.4;
+    letter-spacing:.07em;
     text-transform:uppercase;
     text-align:center;
-    margin-bottom:44px;
-    line-height:1.6;
+    margin-bottom:40px;
+    line-height:1.8;
   }
 
   /* ── Buttons ── */
@@ -120,6 +129,7 @@
   .btn-magenta { background:var(--magenta); color:var(--cream); border-color:rgba(255,255,255,.08); }
   .btn-lime    { background:var(--lime);    color:var(--ink);   border-color:rgba(36,24,39,.15); }
   .btn-lilas   { background:var(--lilas);   color:var(--ink);   border-color:rgba(36,24,39,.1); }
+  .btn-outline { background:transparent; color:var(--cream); border-color:rgba(255,255,255,.2); }
 
   .btn-label {
     display:flex;
@@ -177,9 +187,8 @@
 
   <h1>SISTA</h1>
 
-  <p class="tagline">
-    Le rendez-vous mensuel<br>des entrepreneures · Liège
-  </p>
+  <p class="tagline-main">Les copines business<br>que tu n'as pas encore.</p>
+  <p class="tagline">Rendez-vous mensuels · Liège<br>Pas de pitch. Pas de tour de table.</p>
 
   <div class="links">
 
@@ -219,6 +228,20 @@
       <span class="btn-icon">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M20 12v7a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7"/><polyline points="16 2 22 2 22 8"/><line x1="11" y1="13" x2="22" y2="2"/>
+        </svg>
+      </span>
+    </a>
+
+
+    <!-- 4. Mailing list -->
+    <a class="link-btn btn-lilas" href="https://sista-landing.vercel.app/#signup">
+      <span class="btn-label">
+        <span class="btn-name">Être prévenue</span>
+        <span class="btn-sub">Reçois les prochains events en avant-première</span>
+      </span>
+      <span class="btn-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
         </svg>
       </span>
     </a>
