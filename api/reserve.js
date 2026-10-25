@@ -6,6 +6,7 @@ export const EVENTS = {
     location: 'Bord de Meuse, Liège',
     page: '/reservation-paint-wine-22-octobre.html',
     price: 'price_1U2pUFAE8C0m7EE9Wrw6Qe5m', // 50€ HTVA + 21% TVA = 60,50€ TTC
+    brevoList: 8, // « Sista - Paint & Wine 22/10/26 »
   },
   'petit-dejeuner-24-novembre': {
     name: 'Petit-déjeuner créatif · SISTA 24 novembre',
@@ -14,6 +15,7 @@ export const EVENTS = {
     page: '/reservation-petit-dejeuner-24-novembre.html',
     amountTTC: 4235, // 35€ HTVA + 21% TVA = 42,35€ TTC (en centimes)
     brevoTemplate: 10, // « Ta place est réservée - Breakfast »
+    brevoList: 13, // « Sista - Petit-déjeuner 24/11/26 »
   },
 };
 
@@ -76,6 +78,7 @@ export default async function handler(req, res) {
   params.append('metadata[eventDate]', ev.date);
   params.append('metadata[eventLocation]', ev.location);
   if (ev.brevoTemplate) params.append('metadata[brevoTemplate]', String(ev.brevoTemplate));
+  if (ev.brevoList) params.append('metadata[brevoList]', String(ev.brevoList));
   params.append('metadata[firstName]', firstName);
   params.append('metadata[lastName]', lastName);
   params.append('metadata[email]', email);

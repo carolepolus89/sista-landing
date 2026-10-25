@@ -198,7 +198,8 @@ export default async function handler(req, res) {
       sendBrevoHtml(apiKey, sender, notifyEmail, 'SISTA', `Paiement confirmé — ${firstName} ${lastName}`, internalHtml),
     ]);
 
-    const eventAttendeesListId = Number(process.env.BREVO_LIST_EVENT_ATTENDEES);
+    // Liste propre à l'event, sinon la liste par défaut
+    const eventAttendeesListId = Number(meta.brevoList || process.env.BREVO_LIST_EVENT_ATTENDEES);
     const listIds = eventAttendeesListId ? [eventAttendeesListId] : [];
     if (newsletter === 'true') listIds.push(7);
 
