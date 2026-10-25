@@ -42,10 +42,18 @@
     <h1>Ta place est réservée ✦</h1>
     <p>Merci ! Tu vas recevoir un email de confirmation avec tous les détails.</p>
     <div class="card">
-      <div>📅 Jeudi 22 octobre · 18h–22h</div>
+      <div id="event-date">📅 Jeudi 22 octobre · 18h–22h</div>
       <div>📍 Bord de Meuse · Liège</div>
     </div>
     <a href="index.html" class="btn">Retour au site SISTA</a>
   </div>
+  <script>
+    const dates = {
+      'paint-wine-22-octobre': '📅 Jeudi 22 octobre · 18h–22h',
+      'petit-dejeuner-24-novembre': '📅 Mardi 24 novembre · 9h30–11h30',
+    };
+    const eventId = new URLSearchParams(location.search).get('event');
+    if (dates[eventId]) document.getElementById('event-date').textContent = dates[eventId];
+  </script>
 </body>
 </html>

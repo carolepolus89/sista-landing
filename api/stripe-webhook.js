@@ -75,7 +75,7 @@ async function sendBrevoHtml(apiKey, sender, to, toName, subject, html) {
   });
 }
 
-function internalNotificationHtml(safe, newsletter, amountPaid) {
+function internalNotificationHtml(safe, newsletter, whatsapp, amountPaid) {
   return `
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#EFF0E6;padding:32px 16px;">
   <tr>
@@ -97,6 +97,7 @@ function internalNotificationHtml(safe, newsletter, amountPaid) {
               <tr><td style="padding:10px 0;border-bottom:1px solid #e5e0d8;font-size:13px;color:#241827;opacity:.6;">Entreprise</td><td style="padding:10px 0;border-bottom:1px solid #e5e0d8;font-size:14px;color:#241827;font-weight:bold;text-align:right;">${safe.companyName}</td></tr>
               <tr><td style="padding:10px 0;border-bottom:1px solid #e5e0d8;font-size:13px;color:#241827;opacity:.6;">N° TVA</td><td style="padding:10px 0;border-bottom:1px solid #e5e0d8;font-size:14px;color:#241827;font-family:'Courier New',monospace;text-align:right;">${safe.vatNumber}</td></tr>
               <tr><td style="padding:10px 0;border-bottom:1px solid #e5e0d8;font-size:13px;color:#241827;opacity:.6;">Newsletter</td><td style="padding:10px 0;border-bottom:1px solid #e5e0d8;font-size:14px;color:#241827;text-align:right;">${newsletter === 'true' ? 'oui' : 'non'}</td></tr>
+              <tr><td style="padding:10px 0;border-bottom:1px solid #e5e0d8;font-size:13px;color:#241827;opacity:.6;">Groupe WhatsApp</td><td style="padding:10px 0;border-bottom:1px solid #e5e0d8;font-size:14px;color:#241827;text-align:right;${whatsapp === 'true' ? 'font-weight:bold;color:#E63C90;' : ''}">${whatsapp === 'true' ? 'oui, à ajouter' : 'non'}</td></tr>
               <tr><td style="padding:14px 0 0;font-size:13px;color:#241827;opacity:.6;">Montant payé</td><td style="padding:14px 0 0;font-size:18px;color:#2E4ED8;font-weight:bold;text-align:right;">${amountPaid}</td></tr>
             </table>
           </td>
@@ -149,7 +150,8 @@ export default async function handler(req, res) {
   const {
     firstName = '', lastName = '', email = session.customer_details?.email || '',
     phone = '', instagram = '', companyName = '', vatNumber = '',
-    newsletter = 'false', event: eventName = 'Atelier Paint & Wine — SISTA 22 octobre',
+    newsletter = 'false', whatsapp = 'false', event: eventName = 'Atelier Paint & Wine · SISTA 22 octobre',
+    eventDate = 'Jeudi 22 octobre, 18h–22h', eventLocation = 'Bord de Meuse, Liège',
   } = meta;
 
   const apiKey = (process.env.BREVO_API_KEY || '').replace(/^﻿/, '').trim();
@@ -182,12 +184,12 @@ export default async function handler(req, res) {
     firstName: safe.firstName,
     lastName: safe.lastName,
     eventName: safe.eventName,
-    eventDate: 'Jeudi 22 octobre, 18h–22h',
-    eventLocation: 'Bord de Meuse, Liège',
+    eventDate: escapeHtml(eventDate),
+    eventLocation: escapeHtml(eventLocation),
   };
 
   const amountPaid = `${(session.amount_total / 100).toFixed(2)}€ TTC`;
-  const internalHtml = internalNotificationHtml(safe, newsletter, amountPaid);
+  const internalHtml = internalNotificationHtml(safe, newsletter, whatsapp, amountPaid);
 
   try {
     await Promise.all([

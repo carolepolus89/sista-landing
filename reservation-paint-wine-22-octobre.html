@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Réservation — Atelier Paint & Wine · SISTA</title>
+<title>Réservation · Atelier Paint & Wine · SISTA</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232E4ED8'/><path d='M16 4C16.5 13.2 18.8 15.5 28 16 18.8 16.5 16.5 18.8 16 28 15.5 18.8 13.2 16.5 4 16 13.2 15.5 15.5 13.2 16 4Z' fill='%23E63C90'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -133,7 +133,7 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
         18h20–20h atelier peinture · 20h–22h papotage libre
       </div>
-      <div class="recap-row">50€ HTVA (60,50€ TTC) — matériel et vin inclus</div>
+      <div class="recap-row">50€ HTVA (60,50€ TTC), matériel, vin et planche apéro inclus</div>
     </div>
 
     <div id="error-message"></div>
@@ -187,7 +187,7 @@
         <span>Je veux recevoir les prochaines dates SISTA par email.</span>
       </label>
 
-      <button type="submit" class="btn" id="submit-btn">Continuer vers le paiement — 50€ HTVA (60,50€ TTC)</button>
+      <button type="submit" class="btn" id="submit-btn">Continuer vers le paiement · 50€ HTVA (60,50€ TTC)</button>
       <p class="form-note">Tu seras redirigée vers Stripe pour finaliser ton paiement en toute sécurité.</p>
     </form>
   </div>
@@ -207,7 +207,7 @@
 
     const data = Object.fromEntries(new FormData(form).entries());
     data.newsletter = form.querySelector('#newsletter').checked;
-    data.event = 'Atelier Paint & Wine — SISTA 22 octobre';
+    data.eventId = 'paint-wine-22-octobre';
 
     try {
       const res = await fetch('/api/reserve', {
