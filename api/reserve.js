@@ -13,6 +13,7 @@ export const EVENTS = {
     location: 'Bord de Meuse, Liège',
     page: '/reservation-petit-dejeuner-24-novembre.html',
     amountTTC: 4235, // 35€ HTVA + 21% TVA = 42,35€ TTC (en centimes)
+    brevoTemplate: 10, // « Ta place est réservée - Breakfast »
   },
 };
 
@@ -74,6 +75,7 @@ export default async function handler(req, res) {
   params.append('metadata[event]', ev.name);
   params.append('metadata[eventDate]', ev.date);
   params.append('metadata[eventLocation]', ev.location);
+  if (ev.brevoTemplate) params.append('metadata[brevoTemplate]', String(ev.brevoTemplate));
   params.append('metadata[firstName]', firstName);
   params.append('metadata[lastName]', lastName);
   params.append('metadata[email]', email);

@@ -159,7 +159,8 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Brevo API key manquante' });
   }
 
-  const customerTemplateId = process.env.BREVO_TEMPLATE_RESERVATION_CONFIRMEE;
+  // Modèle choisi par l'event (ex. Breakfast), sinon le modèle par défaut
+  const customerTemplateId = meta.brevoTemplate || process.env.BREVO_TEMPLATE_RESERVATION_CONFIRMEE;
   if (!customerTemplateId) {
     return res.status(500).json({ error: 'ID de template Brevo manquant (BREVO_TEMPLATE_RESERVATION_CONFIRMEE)' });
   }
