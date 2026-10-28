@@ -7,7 +7,7 @@
 <meta name="description" content="Atelier Paint & Wine SISTA · Jeudi 22 octobre · 18h–22h · Bord de Meuse, Liège · 50€ HTVA, planche apéro incluse.">
 <meta property="og:title" content="Atelier Paint & Wine · SISTA · 22 octobre">
 <meta property="og:description" content="Un soir peinture, vin et vraies conversations entre entrepreneures à Liège. Places limitées.">
-<meta property="og:image" content="https://sistatribe.be/img/galerie/paint-wine-groupe.jpg">
+<meta property="og:image" content="event-art-wine.jpg.webp">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232E4ED8'/><path d='M16 4C16.5 13.2 18.8 15.5 28 16 18.8 16.5 16.5 18.8 16 28 15.5 18.8 13.2 16.5 4 16 13.2 15.5 15.5 13.2 16 4Z' fill='%23E63C90'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -247,6 +247,34 @@
     margin:36px 0;
   }
 
+  /* ── En photos ── */
+  .photo-groupe{
+    width:100%;
+    aspect-ratio:3/2;
+    object-fit:cover;
+    border:var(--border-main);
+    border-radius:var(--radius-card);
+    display:block;
+    margin-bottom:12px;
+  }
+  .toiles{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:12px;
+    margin-bottom:36px;
+  }
+  .toiles img{
+    width:100%;
+    aspect-ratio:3/4;
+    object-fit:cover;
+    border:var(--border-main);
+    border-radius:12px;
+    display:block;
+  }
+  @media (max-width:520px){
+    .toiles{ grid-template-columns:repeat(2, 1fr); }
+  }
+
   /* ── CTA sticky ── */
   .cta-block{
     padding:36px 0 64px;
@@ -300,7 +328,7 @@
 </header>
 
 <!-- Hero image -->
-<img class="hero-img" src="img/galerie/paint-wine-groupe.jpg" alt="Atelier Paint & Wine SISTA"
+<img class="hero-img" src="event-art-wine.jpg.webp" alt="Atelier Paint & Wine SISTA"
      onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
 <div class="hero-fallback" style="display:none;"></div>
 
@@ -347,6 +375,17 @@
   <div class="pull-quote">
     "Le prétexte créatif, c'est juste<br>le moyen de se parler pour de vrai."
   </div>
+
+  <!-- En photos -->
+  <h2>La soirée en photos</h2>
+  <img class="photo-groupe" src="img/galerie/paint-wine-groupe.jpg" alt="Les participantes du Paint & Wine SISTA posent avec leurs toiles au Bord de Meuse" loading="lazy">
+  <div class="toiles">
+    <img src="img/galerie/toile-04.jpg" alt="Toile : chat noir sur fond orange" loading="lazy">
+    <img src="img/galerie/toile-05.jpg" alt="Toile : citrouille rose sous une couronne de feuilles" loading="lazy">
+    <img src="img/galerie/toile-07.jpg" alt="Toile : carrés bleus, « Au fil de l'eau »" loading="lazy">
+    <img src="img/galerie/toile-08.jpg" alt="Toile : vague de couleurs vives" loading="lazy">
+  </div>
+  <p style="font-size:14px;opacity:.7;margin:-20px 0 36px;">Toutes les toiles sont sur la <a href="index.html#galerie" style="color:var(--cobalt);">page d'accueil</a>.</p>
 
   <!-- Programme -->
   <h2>Comment ça se passe ?</h2>
