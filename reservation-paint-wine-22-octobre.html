@@ -89,12 +89,12 @@
   .btn{
     font-family:'Hanken Grotesk',sans-serif; font-weight:700; font-size:15px; letter-spacing:.03em;
     border:var(--border-main); border-radius:var(--radius-pill);
-    padding:16px 30px; cursor:pointer; display:block; width:100%; text-align:center;
+    padding:16px 30px; display:block; width:100%; text-align:center;
     text-decoration:none; transition:transform .18s cubic-bezier(.34,1.56,.64,1), box-shadow .18s;
     background:var(--magenta); color:var(--cream);
   }
   .btn:hover{ transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,0,0,.15); }
-  .btn:disabled{ opacity:.6; cursor:default; transform:none; box-shadow:none; }
+  .btn:disabled{ opacity:.6; transform:none; box-shadow:none; }
 
   .form-note{ font-size:13px; opacity:.65; text-align:center; margin-top:4px; }
 
@@ -105,6 +105,7 @@
   #loading-message{ background:var(--blush); color:var(--ink); display:none; text-align:center; }
 </style>
 <script src="/analytics.js" defer></script>
+<link rel="stylesheet" href="curseur.css">
 </head>
 <body>
 

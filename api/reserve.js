@@ -11,7 +11,7 @@ export const EVENTS = {
   },
   'petit-dejeuner-24-novembre': {
     name: 'Petit-déjeuner créatif · Magnets de Noël · SISTA 24 novembre',
-    date: 'Mardi 24 novembre, 9h30–11h30',
+    date: 'Mardi 24 novembre, 9h–11h30',
     location: 'Bord de Meuse, Liège',
     page: '/reservation-petit-dejeuner-24-novembre.html',
     amountTTC: 4235, // 35€ HTVA + 21% TVA = 42,35€ TTC (en centimes)

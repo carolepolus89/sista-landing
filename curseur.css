@@ -1,0 +1,8 @@
+/* Curseur en étincelle, comme dans le logo SISTA : magenta partout, citron sur ce qui se clique */
+html, body{
+  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='-2 -2 28 28'%3E%3Cpath d='M12 0C12.4 9.2 14.8 11.6 24 12 14.8 12.4 12.4 14.8 12 24 11.6 14.8 9.2 12.4 0 12 9.2 11.6 12.4 9.2 12 0Z' fill='%23E63C90' stroke='%23241827' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/svg%3E") 14 14, auto;
+}
+a, button, label, select, summary, [role="button"], .carrousel-btn, input[type="checkbox"], input[type="submit"]{
+  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='-2 -2 28 28'%3E%3Cpath d='M12 0C12.4 9.2 14.8 11.6 24 12 14.8 12.4 12.4 14.8 12 24 11.6 14.8 9.2 12.4 0 12 9.2 11.6 12.4 9.2 12 0Z' fill='%23B5D62A' stroke='%23241827' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/svg%3E") 16 16, pointer;
+}
+input[type="text"], input[type="email"], input[type="tel"], textarea{ cursor:text; }
