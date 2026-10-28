@@ -340,19 +340,45 @@
   .event-card .lieu{ opacity:.8; font-size:14px; margin-bottom:20px; }
   .event-aside{ padding-top:4px; }
 
-  /* ── Galerie ─────────────────────────────────────────── */
-  .galerie{ background:var(--blush); border-top:var(--border-main); border-bottom:var(--border-main); }
-  .galerie > .wrap > p{ max-width:560px; font-size:16px; }
-  .galerie-groupe{ margin:32px 0 28px; padding:12px 12px 48px; transform:rotate(-1deg); }
-  .galerie-groupe img{ width:100%; aspect-ratio:3/2; object-fit:cover; border-radius:4px; display:block; }
-  .galerie-groupe .polaroid-caption{ font-size:14px; bottom:12px; }
-  .galerie-toiles{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
-  .galerie-toiles .polaroid{ padding:8px 8px 32px; }
-  .galerie-toiles .polaroid:nth-child(odd){ transform:rotate(-2deg); }
-  .galerie-toiles .polaroid:nth-child(even){ transform:rotate(1.5deg); }
-  .galerie-toiles .polaroid:hover{ transform:rotate(0) scale(1.05); box-shadow:8px 12px 0 var(--ink); z-index:2; }
-  .galerie-toiles img{ width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:4px; display:block; }
-  .galerie-toiles .polaroid-caption{ font-size:11px; }
+  /* ── En vrai : carrousel photos + témoignages ────────── */
+  .en-vrai{ background:var(--blush); border-top:var(--border-main); border-bottom:var(--border-main); }
+  .en-vrai > .wrap > p{ max-width:560px; font-size:16px; }
+  .en-vrai-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:16px; }
+  .carrousel-nav{ display:flex; gap:8px; margin-bottom:24px; flex:none; }
+  .carrousel-btn{
+    width:44px; height:44px; border-radius:50%; border:var(--border-main);
+    background:var(--cream); color:var(--ink); font-size:18px; cursor:pointer;
+    box-shadow:3px 3px 0 var(--ink); transition:transform .18s cubic-bezier(.34,1.56,.64,1), background .15s;
+  }
+  .carrousel-btn:hover{ transform:translateY(-2px); background:var(--citron); }
+  .carrousel{
+    display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory;
+    padding:16px 6px 24px; margin:12px -6px 0; scrollbar-width:none;
+  }
+  .carrousel::-webkit-scrollbar{ display:none; }
+  .carrousel .polaroid{
+    flex:none; width:200px; margin:0; padding:8px 8px 34px;
+    scroll-snap-align:start;
+  }
+  .carrousel .polaroid.large{ width:390px; }
+  .carrousel .polaroid:nth-child(odd){ transform:rotate(-1.5deg); }
+  .carrousel .polaroid:nth-child(even){ transform:rotate(1.5deg); }
+  .carrousel img{ width:100%; height:260px; object-fit:cover; border-radius:4px; display:block; }
+  .carrousel .polaroid.large img{ object-position:center 15%; }
+  .carrousel .polaroid-caption{ font-size:11px; }
+  .temoignages{
+    display:flex; gap:16px; margin:24px -6px 0; padding:6px 6px 12px;
+    overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none;
+  }
+  .temoignages::-webkit-scrollbar{ display:none; }
+  .temoignage{
+    flex:none; width:300px; scroll-snap-align:start;
+    margin:0; background:var(--cream); border:var(--border-main); border-radius:var(--radius-card);
+    padding:22px 24px; position:relative; box-shadow:3px 4px 0 var(--ink);
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .temoignage p{ margin:0 0 12px; font-size:16px; line-height:1.5; }
+  .temoignage footer{ background:none; color:var(--magenta); padding:0; font-family:'Gloria Hallelujah',cursive; font-size:15px; }
 
   /* ── Signup ──────────────────────────────────────────── */
   .signup{ background:var(--cobalt); color:var(--cream); border-top:var(--border-main); }
@@ -401,7 +427,10 @@
     .compare{ grid-template-columns:1fr; }
     .synergy-grid{ grid-template-columns:1fr; }
     .events-grid{ grid-template-columns:1fr; }
-    .galerie-toiles{ grid-template-columns:repeat(2,1fr); gap:14px; }
+    .carrousel .polaroid{ width:160px; }
+    .carrousel .polaroid.large{ width:300px; }
+    .carrousel img{ height:200px; }
+    .carrousel-nav{ display:none; }
     .hero-stack{ display:none; }
     .repars-text{ font-size:16px; }
     .repars-num{ font-size:36px; width:44px; }
@@ -590,7 +619,7 @@
           <div class="kick" style="color:var(--citron);margin-bottom:4px;">C'ÉTAIT LE JEU 22 OCT</div>
           <div style="opacity:.75;font-size:14px;margin-bottom:20px;">Des pinceaux, du vin, des tableaux et beaucoup de rires au Bord de Meuse. Merci à toutes celles qui étaient là ✦</div>
           <div style="display:flex;gap:8px;">
-            <a href="#galerie" class="btn" style="flex:1;text-align:center;background:transparent;border-color:var(--cream);color:var(--cream);padding:14px 12px;">Voir les photos ↓</a>
+            <a href="#en-vrai" class="btn" style="flex:1;text-align:center;background:transparent;border-color:var(--cream);color:var(--cream);padding:14px 12px;">Voir les photos ↓</a>
           </div>
         </div>
       </div>
@@ -598,31 +627,72 @@
   </div>
 </section>
 
-<!-- ══ GALERIE ═════════════════════════════════════════════ -->
-<section class="galerie" id="galerie" style="position:relative;overflow:hidden;">
+<!-- ══ EN VRAI : photos + témoignages ══════════════════════ -->
+<!-- Ajouter une photo : un <figure class="polaroid"> dans .carrousel (classe "large" pour une photo en paysage).
+     Ajouter un témoignage : un <blockquote class="temoignage"> dans .temoignages. -->
+<section class="en-vrai" id="en-vrai" style="position:relative;overflow:hidden;">
   <svg style="position:absolute;top:36px;right:56px;width:24px;height:24px;" viewBox="0 0 24 24"><path d="M12 0C12.4 9.2 14.8 11.6 24 12 14.8 12.4 12.4 14.8 12 24 11.6 14.8 9.2 12.4 0 12 9.2 11.6 12.4 9.2 12 0Z" fill="#E63C90" opacity=".5"/></svg>
   <div class="wrap">
-    <div class="kick" style="color:var(--magenta);">En vrai · 22 octobre</div>
-    <h2>Le premier Paint &amp; Wine.</h2>
-    <p>Une quinzaine d'entrepreneuses, des toiles blanches, un verre de vin. Personne ne se connaissait vraiment en arrivant. Voilà ce qu'on a ramené à la maison.</p>
+    <div class="kick" style="color:var(--magenta);">En vrai</div>
+    <div class="en-vrai-head">
+      <h2>Les Sista, en vrai.</h2>
+      <div class="carrousel-nav">
+        <button type="button" class="carrousel-btn" data-dir="-1" aria-label="Photos précédentes">←</button>
+        <button type="button" class="carrousel-btn" data-dir="1" aria-label="Photos suivantes">→</button>
+      </div>
+    </div>
+    <p>Des photos de nos rendez-vous, et ce qu'en disent celles qui étaient là.</p>
 
-    <div class="polaroid galerie-groupe">
-      <img src="img/galerie/paint-wine-groupe.jpg" alt="Les participantes du Paint & Wine SISTA posent avec leurs toiles au Bord de Meuse" loading="lazy">
-      <div class="polaroid-caption">Les Sista du 22 octobre, toiles en main ✦</div>
+    <div class="carrousel" tabindex="0" aria-label="Photos des rendez-vous SISTA">
+      <figure class="polaroid large"><img src="img/galerie/paint-wine-groupe.jpg" alt="Les participantes du Paint & Wine SISTA posent avec leurs toiles au Bord de Meuse" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · toiles en main ✦</figcaption></figure>
+      <figure class="polaroid large"><img src="img/galerie/paint-wine-01.jpg" alt="Les chevalets installés face aux baies vitrées, vue sur la Meuse" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · vue sur Meuse</figcaption></figure>
+      <figure class="polaroid"><img src="img/galerie/paint-wine-15.jpg" alt="Carole Polus, fondatrice de SISTA, dans la salle avant l'atelier" loading="lazy"><figcaption class="polaroid-caption">Prête à accueillir ✦</figcaption></figure>
+      <figure class="polaroid large"><img src="img/galerie/paint-wine-05.jpg" alt="Table de matériel : pots de peinture, pinceaux et toile « Bonjour »" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · le matériel</figcaption></figure>
+      <figure class="polaroid"><img src="img/galerie/toile-04.jpg" alt="Toile peinte par une participante : chat noir sur fond orange" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · le chat</figcaption></figure>
+      <figure class="polaroid"><img src="img/galerie/paint-wine-06.jpg" alt="Petit chevalet SISTA à côté d'un bocal lumineux" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · déco</figcaption></figure>
+      <figure class="polaroid large"><img src="img/galerie/paint-wine-20.jpg" alt="La longue table dressée pour l'atelier, devant les baies vitrées" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · la grande table</figcaption></figure>
+      <figure class="polaroid"><img src="img/galerie/paint-wine-17.jpg" alt="Fiche de couleurs sur un chevalet, avec un verre de vin" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · la palette</figcaption></figure>
+      <figure class="polaroid"><img src="img/galerie/toile-01.jpg" alt="Toile peinte par une participante : deux visages abstraits aux tons roses" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · visages</figcaption></figure>
+      <figure class="polaroid large"><img src="img/galerie/paint-wine-11.jpg" alt="Toiles d'exemple aux couleurs d'automne sur la table de matériel" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · les modèles</figcaption></figure>
+      <figure class="polaroid"><img src="img/galerie/paint-wine-19.jpg" alt="Pinceaux et feutres dans un bocal" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · pinceaux</figcaption></figure>
+      <figure class="polaroid large"><img src="img/galerie/paint-wine-12.jpg" alt="Fiche d'atelier SISTA sur un chevalet, à côté d'un verre de vin" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · la fiche du jour</figcaption></figure>
+      <figure class="polaroid"><img src="img/galerie/toile-08.jpg" alt="Toile peinte par une participante : vague de couleurs vives" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · la vague</figcaption></figure>
+      <figure class="polaroid large"><img src="img/galerie/paint-wine-24.jpg" alt="Feutres de couleur dans des pots en verre" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · feutres</figcaption></figure>
     </div>
 
-    <div class="galerie-toiles">
-      <div class="polaroid"><img src="img/galerie/toile-01.jpg" alt="Toile : deux visages abstraits aux tons roses" loading="lazy"><div class="polaroid-caption">Visages</div></div>
-      <div class="polaroid"><img src="img/galerie/toile-02.jpg" alt="Toile : un cœur rose et des flammes orange" loading="lazy"><div class="polaroid-caption">Cœur en feu</div></div>
-      <div class="polaroid"><img src="img/galerie/toile-03.jpg" alt="Toile : lune jaune sur des collines roses" loading="lazy"><div class="polaroid-caption">Clair de lune</div></div>
-      <div class="polaroid"><img src="img/galerie/toile-04.jpg" alt="Toile : chat noir sur fond orange" loading="lazy"><div class="polaroid-caption">Le chat</div></div>
-      <div class="polaroid"><img src="img/galerie/toile-05.jpg" alt="Toile : citrouille rose sous une couronne de feuilles" loading="lazy"><div class="polaroid-caption">Citrouille</div></div>
-      <div class="polaroid"><img src="img/galerie/toile-06.jpg" alt="Toile : arbres d'automne sur fond bleu" loading="lazy"><div class="polaroid-caption">Automne</div></div>
-      <div class="polaroid"><img src="img/galerie/toile-07.jpg" alt="Toile : carrés bleus, « Au fil de l'eau »" loading="lazy"><div class="polaroid-caption">Au fil de l'eau</div></div>
-      <div class="polaroid"><img src="img/galerie/toile-08.jpg" alt="Toile : vague de couleurs vives" loading="lazy"><div class="polaroid-caption">La vague</div></div>
+    <div class="temoignages">
+      <blockquote class="temoignage">
+        <p>« Je te tenais juste à remercier Carole de m'avoir fait découvrir l'atelier Paint &amp; Wine de ce soir 😀 »</p>
+        <footer>Claudine</footer>
+      </blockquote>
+      <blockquote class="temoignage">
+        <p>« Merci à toi pour la soirée, c'était très chouette ! 🍷🎨👌 »</p>
+        <footer>Alison David</footer>
+      </blockquote>
+      <blockquote class="temoignage">
+        <p>« J'ai aussi passé un bon moment en tant qu'invitée comme les autres et c'était top ! Je suis sûre que ça va fonctionner à terme, en tout cas c'est bien parti. »</p>
+        <footer>Periskop</footer>
+      </blockquote>
+      <blockquote class="temoignage">
+        <p>« Encore merci pour cette super chouette soirée ! »</p>
+        <footer>Roxanne Delchambre · Nutrinova</footer>
+      </blockquote>
+      <blockquote class="temoignage">
+        <p>« Merci Carole, c'était très chouette. »</p>
+        <footer>Marie Jenine</footer>
+      </blockquote>
     </div>
   </div>
 </section>
+<script>
+  // Carrousel : les flèches font défiler d'environ une largeur visible
+  document.querySelectorAll('.carrousel-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const track = document.querySelector('.carrousel');
+      track.scrollBy({ left: Number(btn.dataset.dir) * track.clientWidth * 0.8, behavior: 'smooth' });
+    });
+  });
+</script>
 
 <!-- ══ ANCRÉ À LIÈGE + BORD DE MEUSE ══════════════════════ -->
 <section class="synergy" style="position:relative;overflow:hidden;">
