@@ -159,7 +159,7 @@
 
   /* Polaroïds empilés */
   .hero-stack{
-    position:relative; width:480px; height:460px; flex:none;
+    position:relative; width:500px; height:630px; flex:none;
   }
   .hero-stack .polaroid{
     position:absolute;
@@ -340,45 +340,63 @@
   .event-card .lieu{ opacity:.8; font-size:14px; margin-bottom:20px; }
   .event-aside{ padding-top:4px; }
 
-  /* ── En vrai : carrousel photos + témoignages ────────── */
-  .en-vrai{ background:var(--blush); border-top:var(--border-main); border-bottom:var(--border-main); }
+  /* ── En vrai : carrousel photos pleine largeur ───────── */
+  .en-vrai{ background:var(--blush); border-top:var(--border-main); border-bottom:var(--border-main); padding-bottom:48px; }
   .en-vrai > .wrap > p{ max-width:560px; font-size:16px; }
-  .en-vrai-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:16px; }
-  .carrousel-nav{ display:flex; gap:8px; margin-bottom:24px; flex:none; }
+  .carrousel-plein{ position:relative; margin-top:12px; }
   .carrousel-btn{
-    width:44px; height:44px; border-radius:50%; border:var(--border-main);
-    background:var(--cream); color:var(--ink); font-size:18px; cursor:pointer;
+    position:absolute; top:calc(50% - 18px); transform:translateY(-50%); z-index:5;
+    width:48px; height:48px; border-radius:50%; border:var(--border-main);
+    background:var(--cream); color:var(--ink); font-size:20px; cursor:pointer;
     box-shadow:3px 3px 0 var(--ink); transition:transform .18s cubic-bezier(.34,1.56,.64,1), background .15s;
   }
-  .carrousel-btn:hover{ transform:translateY(-2px); background:var(--citron); }
+  .carrousel-btn.prev{ left:20px; }
+  .carrousel-btn.next{ right:20px; }
+  .carrousel-btn:hover{ transform:translateY(-50%) scale(1.08); background:var(--citron); }
   .carrousel{
-    display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory;
-    padding:16px 6px 24px; margin:12px -6px 0; scrollbar-width:none;
+    display:flex; gap:24px; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none;
+    padding:16px 24px 24px; scroll-padding-inline:24px;
   }
+  .carrousel[data-auto]{ scroll-snap-type:none; }
   .carrousel::-webkit-scrollbar{ display:none; }
   .carrousel .polaroid{
-    flex:none; width:200px; margin:0; padding:8px 8px 34px;
+    flex:none; width:260px; margin:0; padding:10px 10px 0;
     scroll-snap-align:start;
   }
-  .carrousel .polaroid.large{ width:390px; }
+  .carrousel .polaroid.large{ width:500px; }
   .carrousel .polaroid:nth-child(odd){ transform:rotate(-1.5deg); }
   .carrousel .polaroid:nth-child(even){ transform:rotate(1.5deg); }
-  .carrousel img{ width:100%; height:260px; object-fit:cover; border-radius:4px; display:block; }
+  .carrousel img{ width:100%; height:340px; object-fit:cover; border-radius:4px; display:block; }
   .carrousel .polaroid.large img{ object-position:center 15%; }
-  .carrousel .polaroid-caption{ font-size:11px; }
-  .temoignages{
-    display:flex; gap:16px; margin:24px -6px 0; padding:6px 6px 12px;
-    overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none;
-  }
-  .temoignages::-webkit-scrollbar{ display:none; }
+  /* Légende sous la photo, dans le blanc du polaroïd : nom de l'event + lieu */
+  .polaroid .legende{ position:static; padding:8px 4px 10px; text-align:center; line-height:1.25; }
+  .polaroid .legende strong{ display:block; font-family:'Gloria Hallelujah',cursive; font-weight:400; font-size:17px; color:var(--ink); }
+  .polaroid .legende span{ display:block; font-family:'Space Mono',monospace; font-size:10px; letter-spacing:.08em; text-transform:uppercase; opacity:.6; margin-top:2px; }
+  .carrousel .polaroid:hover{ transform:rotate(0) scale(1.04); box-shadow:8px 12px 0 var(--ink); z-index:2; }
+
+  /* ── Témoignages (même carrousel pleine largeur) ─────── */
+  .temoignages-section{ background:#fff; border-bottom:var(--border-main); padding-bottom:48px; }
+  .carrousel-plein.avis .carrousel-btn{ top:calc(50% - 4px); }
+  .carrousel.temoignages{ margin-top:12px; }
   .temoignage{
-    flex:none; width:300px; scroll-snap-align:start;
+    flex:none; width:340px; scroll-snap-align:start;
     margin:0; background:var(--cream); border:var(--border-main); border-radius:var(--radius-card);
-    padding:22px 24px; position:relative; box-shadow:3px 4px 0 var(--ink);
+    padding:24px 26px; position:relative; box-shadow:4px 5px 0 var(--ink);
     display:flex; flex-direction:column; justify-content:space-between;
+    transition:transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s;
   }
-  .temoignage p{ margin:0 0 12px; font-size:16px; line-height:1.5; }
-  .temoignage footer{ background:none; color:var(--magenta); padding:0; font-family:'Gloria Hallelujah',cursive; font-size:15px; }
+  .temoignage:nth-child(odd){ transform:rotate(-1deg); }
+  .temoignage:nth-child(even){ transform:rotate(1deg); }
+  .temoignage:hover{ transform:translateY(-6px) rotate(0); box-shadow:8px 11px 0 var(--ink); }
+
+  /* ── Apparition au scroll (ajoutée par le script) ─────── */
+  .reveal{ opacity:0; translate:0 28px; transition:opacity .6s ease, translate .6s cubic-bezier(.22,1,.36,1), transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s; }
+  .reveal.visible{ opacity:1; translate:0 0; }
+  .temoignage:nth-child(3n+2){ background:var(--blush); }
+  .temoignage:nth-child(3n){ background:var(--citron); }
+  .temoignage p{ margin:0 0 14px; font-size:16px; line-height:1.55; }
+  .temoignage footer{ background:none; color:var(--magenta); padding:0; font-family:'Gloria Hallelujah',cursive; font-size:17px; }
+  .temoignage .insta{ font-family:'Space Mono',monospace; font-size:11px; color:var(--ink); opacity:.6; margin-left:6px; }
 
   /* ── Signup ──────────────────────────────────────────── */
   .signup{ background:var(--cobalt); color:var(--cream); border-top:var(--border-main); }
@@ -418,6 +436,11 @@
   footer .legal-links a{ font-size:11px; opacity:.5; color:var(--cream); text-decoration:none; font-family:'Space Mono',monospace; letter-spacing:.04em; }
   footer .legal-links a:hover{ opacity:.85; }
 
+  /* ── Gloria Hallelujah en majuscules : trait épaissi (la police n'a qu'une graisse) ── */
+  .marker, .compare-card-title, .creative-tag, .pourqui-tag{ -webkit-text-stroke:.6px currentColor; letter-spacing:.03em; }
+  .repars-num{ -webkit-text-stroke:1.5px currentColor; }
+  .stat .num{ -webkit-text-stroke:3px currentColor; }
+
   /* ── Responsive ──────────────────────────────────────── */
   @media (max-width:768px){
     h1{ font-size:42px; }
@@ -427,10 +450,15 @@
     .compare{ grid-template-columns:1fr; }
     .synergy-grid{ grid-template-columns:1fr; }
     .events-grid{ grid-template-columns:1fr; }
-    .carrousel .polaroid{ width:160px; }
-    .carrousel .polaroid.large{ width:300px; }
-    .carrousel img{ height:200px; }
-    .carrousel-nav{ display:none; }
+    .carrousel .polaroid{ width:200px; }
+    .carrousel .polaroid.large{ width:330px; }
+    .carrousel img{ height:240px; }
+    .polaroid .legende strong{ font-size:15px; }
+    .carrousel-btn{ width:40px; height:40px; font-size:17px; }
+    .carrousel-btn.prev{ left:8px; }
+    .carrousel-btn.next{ right:8px; }
+    .temoignage{ width:280px; }
+    .avis .carrousel-btn{ display:none; }
     .hero-stack{ display:none; }
     .repars-text{ font-size:16px; }
     .repars-num{ font-size:36px; width:44px; }
@@ -487,20 +515,20 @@
     <!-- Polaroïds empilés -->
     <div class="hero-stack">
       <!-- Haut droite : Bord de Meuse (glisser 6911ad3a1899f_1762766138.jpg dans sista-landing/) -->
-      <div class="polaroid" style="width:260px;height:215px;top:0;right:10px;transform:rotate(3.5deg);z-index:1;">
-        <img src="6911ad3a1899f_1762766138.jpg" alt="Bord de Meuse" style="width:100%;height:140px;object-fit:cover;border-radius:4px;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="polaroid-inner" style="height:140px;display:none;font-size:9px;">Bord de Meuse<br>(à venir)</div>
-        <div class="polaroid-caption">Bord de Meuse · Liège</div>
+      <div class="polaroid" style="width:290px;padding-bottom:0;top:0;right:0;transform:rotate(3.5deg);z-index:1;">
+        <img src="6911ad3a1899f_1762766138.jpg" alt="Bord de Meuse" style="width:100%;height:170px;object-fit:cover;border-radius:4px;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="polaroid-inner" style="height:170px;display:none;font-size:9px;">Bord de Meuse<br>(à venir)</div>
+        <div class="legende"><strong>Bord de Meuse</strong><span>Hermalle</span></div>
       </div>
-      <!-- Milieu gauche : Paint & Wine -->
-      <div class="polaroid" style="width:240px;height:200px;top:130px;left:0;transform:rotate(-3deg);z-index:2;">
-        <img src="img/galerie/paint-wine-groupe.jpg" alt="Paint & Wine SISTA" style="width:100%;height:125px;object-fit:cover;object-position:center 15%;border-radius:4px;display:block;">
-        <div class="polaroid-caption">Paint & Wine</div>
+      <!-- Milieu gauche : Paint & Wine (version peinte de la photo de groupe) -->
+      <div class="polaroid" style="width:290px;padding-bottom:0;top:165px;left:0;transform:rotate(-3deg);z-index:2;">
+        <img src="img/galerie/paint-wine-peinture.jpg" alt="Les participantes du Paint & Wine SISTA, en version peinte" style="width:100%;height:170px;object-fit:cover;object-position:center 30%;border-radius:4px;display:block;">
+        <div class="legende"><strong>Soirée Paint &amp; Wine</strong><span>Bord de Meuse · Hermalle</span></div>
       </div>
       <!-- Bas droite : Petit-déjeuner -->
-      <div class="polaroid" style="width:225px;height:185px;top:255px;right:20px;transform:rotate(2deg);z-index:3;">
-        <img src="img/atelier-magnets-noel.jpg" alt="Petit-déjeuner créatif : magnets de Noël" style="width:100%;height:110px;object-fit:cover;border-radius:4px;display:block;">
-        <div class="polaroid-caption">Petit-déj magnets de Noël</div>
+      <div class="polaroid" style="width:280px;padding-bottom:0;top:400px;right:10px;transform:rotate(2deg);z-index:3;">
+        <img src="img/atelier-magnets-noel.jpg" alt="Petit-déjeuner créatif : magnets de Noël" style="width:100%;height:160px;object-fit:cover;border-radius:4px;display:block;">
+        <div class="legende"><strong>Petit-déj magnets de Noël</strong><span>(24/11)</span></div>
       </div>
     </div>
   </div>
@@ -634,40 +662,51 @@
   <svg style="position:absolute;top:36px;right:56px;width:24px;height:24px;" viewBox="0 0 24 24"><path d="M12 0C12.4 9.2 14.8 11.6 24 12 14.8 12.4 12.4 14.8 12 24 11.6 14.8 9.2 12.4 0 12 9.2 11.6 12.4 9.2 12 0Z" fill="#E63C90" opacity=".5"/></svg>
   <div class="wrap">
     <div class="kick" style="color:var(--magenta);">En vrai</div>
-    <div class="en-vrai-head">
-      <h2>Les Sista, en vrai.</h2>
-      <div class="carrousel-nav">
-        <button type="button" class="carrousel-btn" data-dir="-1" aria-label="Photos précédentes">←</button>
-        <button type="button" class="carrousel-btn" data-dir="1" aria-label="Photos suivantes">→</button>
-      </div>
-    </div>
-    <p>Des photos de nos rendez-vous, et ce qu'en disent celles qui étaient là.</p>
+    <h2>Les Sista, en vrai.</h2>
+    <p>Des photos de nos rendez-vous, pour voir à quoi ça ressemble avant de venir.</p>
+  </div>
 
-    <div class="carrousel" tabindex="0" aria-label="Photos des rendez-vous SISTA">
-      <figure class="polaroid large"><img src="img/galerie/paint-wine-groupe.jpg" alt="Les participantes du Paint & Wine SISTA posent avec leurs toiles au Bord de Meuse" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · toiles en main ✦</figcaption></figure>
-      <figure class="polaroid large"><img src="img/galerie/paint-wine-01.jpg" alt="Les chevalets installés face aux baies vitrées, vue sur la Meuse" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · vue sur Meuse</figcaption></figure>
-      <figure class="polaroid"><img src="img/galerie/paint-wine-15.jpg" alt="Carole Polus, fondatrice de SISTA, dans la salle avant l'atelier" loading="lazy"><figcaption class="polaroid-caption">Prête à accueillir ✦</figcaption></figure>
-      <figure class="polaroid large"><img src="img/galerie/paint-wine-05.jpg" alt="Table de matériel : pots de peinture, pinceaux et toile « Bonjour »" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · le matériel</figcaption></figure>
-      <figure class="polaroid"><img src="img/galerie/toile-04.jpg" alt="Toile peinte par une participante : chat noir sur fond orange" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · le chat</figcaption></figure>
-      <figure class="polaroid"><img src="img/galerie/paint-wine-06.jpg" alt="Petit chevalet SISTA à côté d'un bocal lumineux" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · déco</figcaption></figure>
-      <figure class="polaroid large"><img src="img/galerie/paint-wine-20.jpg" alt="La longue table dressée pour l'atelier, devant les baies vitrées" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · la grande table</figcaption></figure>
-      <figure class="polaroid"><img src="img/galerie/paint-wine-17.jpg" alt="Fiche de couleurs sur un chevalet, avec un verre de vin" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · la palette</figcaption></figure>
-      <figure class="polaroid"><img src="img/galerie/toile-01.jpg" alt="Toile peinte par une participante : deux visages abstraits aux tons roses" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · visages</figcaption></figure>
-      <figure class="polaroid large"><img src="img/galerie/paint-wine-11.jpg" alt="Toiles d'exemple aux couleurs d'automne sur la table de matériel" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · les modèles</figcaption></figure>
-      <figure class="polaroid"><img src="img/galerie/paint-wine-19.jpg" alt="Pinceaux et feutres dans un bocal" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · pinceaux</figcaption></figure>
-      <figure class="polaroid large"><img src="img/galerie/paint-wine-12.jpg" alt="Fiche d'atelier SISTA sur un chevalet, à côté d'un verre de vin" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · la fiche du jour</figcaption></figure>
-      <figure class="polaroid"><img src="img/galerie/toile-08.jpg" alt="Toile peinte par une participante : vague de couleurs vives" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · la vague</figcaption></figure>
-      <figure class="polaroid large"><img src="img/galerie/paint-wine-24.jpg" alt="Feutres de couleur dans des pots en verre" loading="lazy"><figcaption class="polaroid-caption">Paint &amp; Wine · feutres</figcaption></figure>
+  <div class="carrousel-plein">
+    <button type="button" class="carrousel-btn prev" data-dir="-1" aria-label="Photos précédentes">←</button>
+    <button type="button" class="carrousel-btn next" data-dir="1" aria-label="Photos suivantes">→</button>
+    <div class="carrousel" data-auto tabindex="0" aria-label="Photos des rendez-vous SISTA">
+      <figure class="polaroid large"><img src="img/galerie/paint-wine-groupe.jpg" alt="Les participantes du Paint & Wine SISTA posent avec leurs toiles au Bord de Meuse" loading="lazy"><figcaption class="legende"><strong>Soirée Paint &amp; Wine</strong><span>Bord de Meuse · Hermalle</span></figcaption></figure>
+      <figure class="polaroid large"><img src="img/galerie/paint-wine-01.jpg" alt="Les chevalets installés face aux baies vitrées, vue sur la Meuse" loading="lazy"><figcaption class="legende"><strong>Soirée Paint &amp; Wine</strong><span>Bord de Meuse · Hermalle</span></figcaption></figure>
+      <figure class="polaroid"><img src="img/galerie/paint-wine-15.jpg" alt="Carole Polus, fondatrice de SISTA, dans la salle avant l'atelier" loading="lazy"><figcaption class="legende"><strong>Soirée Paint &amp; Wine</strong><span>Bord de Meuse · Hermalle</span></figcaption></figure>
+      <figure class="polaroid large"><img src="img/galerie/paint-wine-05.jpg" alt="Table de matériel : pots de peinture, pinceaux et toile « Bonjour »" loading="lazy"><figcaption class="legende"><strong>Soirée Paint &amp; Wine</strong><span>Bord de Meuse · Hermalle</span></figcaption></figure>
+      <figure class="polaroid"><img src="img/galerie/toile-04.jpg" alt="Toile peinte par une participante : chat noir sur fond orange" loading="lazy"><figcaption class="legende"><strong>Soirée Paint &amp; Wine</strong><span>Bord de Meuse · Hermalle</span></figcaption></figure>
+      <figure class="polaroid"><img src="img/galerie/paint-wine-06.jpg" alt="Petit chevalet SISTA à côté d'un bocal lumineux" loading="lazy"><figcaption class="legende"><strong>Soirée Paint &amp; Wine</strong><span>Bord de Meuse · Hermalle</span></figcaption></figure>
+      <figure class="polaroid large"><img src="img/galerie/paint-wine-20.jpg" alt="La longue table dressée pour l'atelier, devant les baies vitrées" loading="lazy"><figcaption class="legende"><strong>Soirée Paint &amp; Wine</strong><span>Bord de Meuse · Hermalle</span></figcaption></figure>
+      <figure class="polaroid"><img src="img/galerie/paint-wine-17.jpg" alt="Fiche de couleurs sur un chevalet, avec un verre de vin" loading="lazy"><figcaption class="legende"><strong>Soirée Paint &amp; Wine</strong><span>Bord de Meuse · Hermalle</span></figcaption></figure>
+      <figure class="polaroid"><img src="img/galerie/toile-01.jpg" alt="Toile peinte par une participante : deux visages abstraits aux tons roses" loading="lazy"><figcaption class="legende"><strong>Soirée Paint &amp; Wine</strong><span>Bord de Meuse · Hermalle</span></figcaption></figure>
+      <figure class="polaroid large"><img src="img/galerie/paint-wine-11.jpg" alt="Toiles d'exemple aux couleurs d'automne sur la table de matériel" loading="lazy"><figcaption class="legende"><strong>Soirée Paint &amp; Wine</strong><span>Bord de Meuse · Hermalle</span></figcaption></figure>
+      <figure class="polaroid"><img src="img/galerie/paint-wine-19.jpg" alt="Pinceaux et feutres dans un bocal" loading="lazy"><figcaption class="legende"><strong>Soirée Paint &amp; Wine</strong><span>Bord de Meuse · Hermalle</span></figcaption></figure>
+      <figure class="polaroid large"><img src="img/galerie/paint-wine-12.jpg" alt="Fiche d'atelier SISTA sur un chevalet, à côté d'un verre de vin" loading="lazy"><figcaption class="legende"><strong>Soirée Paint &amp; Wine</strong><span>Bord de Meuse · Hermalle</span></figcaption></figure>
+      <figure class="polaroid"><img src="img/galerie/toile-08.jpg" alt="Toile peinte par une participante : vague de couleurs vives" loading="lazy"><figcaption class="legende"><strong>Soirée Paint &amp; Wine</strong><span>Bord de Meuse · Hermalle</span></figcaption></figure>
+      <figure class="polaroid large"><img src="img/galerie/paint-wine-24.jpg" alt="Feutres de couleur dans des pots en verre" loading="lazy"><figcaption class="legende"><strong>Soirée Paint &amp; Wine</strong><span>Bord de Meuse · Hermalle</span></figcaption></figure>
     </div>
+  </div>
+</section>
 
-    <div class="temoignages">
+<!-- ══ TÉMOIGNAGES ═════════════════════════════════════════ -->
+<!-- Ajouter un témoignage : un <blockquote class="temoignage"> ; signature = prénom, + mention Insta s'il y en a une. -->
+<section class="temoignages-section" id="temoignages" style="position:relative;overflow:hidden;">
+  <svg style="position:absolute;top:40px;right:64px;width:20px;height:20px;" viewBox="0 0 24 24"><path d="M12 0C12.4 9.2 14.8 11.6 24 12 14.8 12.4 12.4 14.8 12 24 11.6 14.8 9.2 12.4 0 12 9.2 11.6 12.4 9.2 12 0Z" fill="#B5D62A"/></svg>
+  <div class="wrap">
+    <div class="kick" style="color:var(--magenta);">Elles y étaient</div>
+    <h2>Ce qu'elles en disent.</h2>
+  </div>
+  <div class="carrousel-plein avis">
+    <button type="button" class="carrousel-btn prev" data-dir="-1" aria-label="Témoignages précédents">←</button>
+    <button type="button" class="carrousel-btn next" data-dir="1" aria-label="Témoignages suivants">→</button>
+    <div class="carrousel temoignages" tabindex="0" aria-label="Témoignages de participantes">
       <blockquote class="temoignage">
         <p>« Je te tenais juste à remercier Carole de m'avoir fait découvrir l'atelier Paint &amp; Wine de ce soir 😀 »</p>
         <footer>Claudine</footer>
       </blockquote>
       <blockquote class="temoignage">
         <p>« Merci à toi pour la soirée, c'était très chouette ! 🍷🎨👌 »</p>
-        <footer>Alison David</footer>
+        <footer>Alison</footer>
       </blockquote>
       <blockquote class="temoignage">
         <p>« J'ai aussi passé un bon moment en tant qu'invitée comme les autres et c'était top ! Je suis sûre que ça va fonctionner à terme, en tout cas c'est bien parti. »</p>
@@ -675,23 +714,75 @@
       </blockquote>
       <blockquote class="temoignage">
         <p>« Encore merci pour cette super chouette soirée ! »</p>
-        <footer>Roxanne Delchambre · Nutrinova</footer>
+        <footer>Roxanne <span class="insta">@nutrinova.roxane</span></footer>
       </blockquote>
       <blockquote class="temoignage">
         <p>« Merci Carole, c'était très chouette. »</p>
-        <footer>Marie Jenine</footer>
+        <footer>Marie</footer>
       </blockquote>
     </div>
   </div>
 </section>
 <script>
-  // Carrousel : les flèches font défiler d'environ une largeur visible
+  // Carrousel photos : défile tout doucement en boucle, s'arrête au survol ou au toucher
+  document.querySelectorAll('.carrousel[data-auto]').forEach(track => {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const box = track.parentElement;
+    const originals = [...track.children];
+    // Les photos sont doublées pour que la boucle ne se voie pas
+    originals.forEach(el => {
+      const copy = el.cloneNode(true);
+      copy.setAttribute('aria-hidden', 'true');
+      track.appendChild(copy);
+    });
+    const period = () => track.children[originals.length].offsetLeft - originals[0].offsetLeft;
+    let paused = false, pos = 0, timer;
+    const resume = () => { paused = false; pos = track.scrollLeft; };
+    track.pauseFor = ms => { paused = true; clearTimeout(timer); timer = setTimeout(resume, ms); };
+    box.addEventListener('mouseenter', () => { clearTimeout(timer); paused = true; });
+    box.addEventListener('mouseleave', resume);
+    track.addEventListener('touchstart', () => { clearTimeout(timer); paused = true; }, { passive: true });
+    track.addEventListener('touchend', () => track.pauseFor(3000));
+    track.addEventListener('focusin', () => { paused = true; });
+    track.addEventListener('focusout', resume);
+    const step = () => {
+      if (!paused) {
+        pos += 0.35;
+        if (pos >= period()) pos -= period();
+        track.scrollLeft = pos;
+      }
+      requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  });
+
+  // Flèches : font défiler d'environ une largeur visible
   document.querySelectorAll('.carrousel-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      const track = document.querySelector('.carrousel');
+      const track = btn.parentElement.querySelector('.carrousel');
+      if (track.pauseFor) track.pauseFor(1500);
       track.scrollBy({ left: Number(btn.dataset.dir) * track.clientWidth * 0.8, behavior: 'smooth' });
     });
   });
+
+  // Apparition douce des éléments quand ils arrivent à l'écran
+  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const items = document.querySelectorAll('.events-grid > div, .carrousel .polaroid, .temoignage, .en-vrai h2, .temoignages-section h2');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+        // Le décalage ne sert qu'à l'apparition, pas au survol
+        setTimeout(() => { e.target.style.transitionDelay = ''; }, 900);
+      });
+    }, { threshold: .15 });
+    items.forEach((el, i) => {
+      el.classList.add('reveal');
+      el.style.transitionDelay = (i % 4) * 70 + 'ms';
+      io.observe(el);
+    });
+  }
 </script>
 
 <!-- ══ ANCRÉ À LIÈGE + BORD DE MEUSE ══════════════════════ -->
