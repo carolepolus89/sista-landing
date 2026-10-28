@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Petit-déjeuner créatif · SISTA · 24 novembre</title>
-<meta name="description" content="Petit-déjeuner créatif SISTA · Mardi 24 novembre · 9h30–11h30 · Bord de Meuse, Liège · 35€ HTVA, petit-déjeuner inclus.">
-<meta property="og:title" content="Petit-déjeuner créatif · SISTA · 24 novembre">
-<meta property="og:description" content="Un café, une activité créative et de vraies conversations entre entrepreneures à Liège. Places limitées.">
-<meta property="og:image" content="petit-dejeuner-creatif.png">
+<title>Magnets de Noël · Petit-déjeuner créatif SISTA · 24 novembre</title>
+<meta name="description" content="Petit-déjeuner créatif SISTA · Atelier magnets de Noël en pâte polymère · Mardi 24 novembre · 9h30–11h30 · Bord de Meuse, Liège · 35€ HTVA, petit-déjeuner et matériel inclus.">
+<meta property="og:title" content="Magnets de Noël · Petit-déjeuner créatif SISTA · 24 novembre">
+<meta property="og:description" content="Un café, un croissant, et 2 ou 3 mini magnets de Noël à modeler en papotant. Mardi 24 novembre à Liège, 15 places.">
+<meta property="og:image" content="https://sistatribe.be/img/og-magnets-noel.jpg">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232E4ED8'/><path d='M16 4C16.5 13.2 18.8 15.5 28 16 18.8 16.5 16.5 18.8 16 28 15.5 18.8 13.2 16.5 4 16 13.2 15.5 15.5 13.2 16 4Z' fill='%23E63C90'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -205,6 +205,31 @@
     line-height:1.2;
   }
 
+  /* ── Modèles de magnets ── */
+  .magnets{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:12px;
+    margin:8px 0 12px;
+  }
+  .magnets img{
+    width:100%;
+    height:96px;
+    object-fit:contain;
+    filter:drop-shadow(0 6px 8px rgba(36,24,39,.18));
+  }
+  .magnets-note{
+    font-family:'Gloria Hallelujah', cursive;
+    font-size:14px;
+    color:var(--magenta);
+    text-align:center;
+    margin-bottom:36px;
+  }
+  @media (max-width:520px){
+    .magnets{ gap:6px; }
+    .magnets img{ height:64px; }
+  }
+
   /* ── Programme ── */
   .programme{
     border:var(--border-main);
@@ -300,15 +325,15 @@
 </header>
 
 <!-- Hero image -->
-<img class="hero-img" src="petit-dejeuner-creatif.png" alt="Petit-déjeuner créatif SISTA"
+<img class="hero-img" src="img/atelier-magnets-noel.jpg" alt="Une assiette de mini magnets de Noël en pâte polymère : bonhomme en pain d'épices, sapin, bonhomme de neige, renne"
      onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
 <div class="hero-fallback" style="display:none;"></div>
 
 <div class="wrap">
 
   <div class="event-header">
-    <p class="event-label">Petit-déjeuner créa · Événement #2</p>
-    <h1>Petit-déjeuner<br>créatif</h1>
+    <p class="event-label">Petit-déjeuner créatif · Événement #2</p>
+    <h1>Atelier magnets<br>de Noël</h1>
   </div>
 
   <!-- Infos pratiques -->
@@ -332,17 +357,30 @@
     <div>
       <p class="prix-label">Tarif</p>
       <p class="prix-amount">35 €<span style="font-size:16px;font-weight:400;opacity:.6;"> HTVA</span></p>
-      <p class="prix-sub">Petit-déjeuner inclus ✦</p>
+      <p class="prix-sub">Petit-déjeuner et matériel inclus ✦</p>
     </div>
     <span class="places-badge">⚡ Limité à 15 places</span>
   </div>
 
   <!-- Corps -->
   <div class="body-text">
-    <p>Une matinée pour démarrer la journée autrement : un bon café, un petit-déjeuner, et une activité créative pour se mettre les mains (et la tête) dans autre chose que ses mails.</p>
-    <p>Le format est simple : un petit groupe de 15 entrepreneuses maximum, une activité qui brise la glace, et du temps pour vraiment discuter. L'activité crée le contexte ; les conversations font le reste.</p>
-    <p>L'activité créative du jour sera dévoilée très bientôt. Une chose est sûre : aucun talent artistique requis.</p>
+    <p>Une matinée pour démarrer la journée autrement : un bon café, un petit-déjeuner, et les mains dans la pâte plutôt que dans ses mails.</p>
+    <p>Ce mois-ci, on fabrique chacune 2 ou 3 mini magnets de Noël en pâte polymère (la pâte à modeler qui durcit, comme la Fimo). Bonhomme en pain d'épices, petit sapin, tasse de chocolat chaud… tu choisis tes modèles, on te montre les gestes, et tu modèles en papotant. Tes magnets finiront sur ton frigo, ou glissés dans un cadeau.</p>
+    <p>Tout le matériel est fourni. Et aucun talent artistique requis : si tu sais rouler une boule de pâte à modeler, tu sais faire un magnet.</p>
   </div>
+
+  <h2>Quelques idées de modèles</h2>
+  <div class="magnets">
+    <img src="img/magnets/01-pain-epices.webp" alt="Magnet bonhomme en pain d'épices" loading="lazy">
+    <img src="img/magnets/09-sapin.webp" alt="Magnet sapin de Noël" loading="lazy">
+    <img src="img/magnets/03-bonhomme-neige.webp" alt="Magnet bonhomme de neige" loading="lazy">
+    <img src="img/magnets/07-renne.webp" alt="Magnet renne" loading="lazy">
+    <img src="img/magnets/11-tasse-bleue.webp" alt="Magnet tasse de chocolat chaud" loading="lazy">
+    <img src="img/magnets/05-bonnet-noel.webp" alt="Magnet bonnet de Noël" loading="lazy">
+    <img src="img/magnets/12-etoile.webp" alt="Magnet étoile" loading="lazy">
+    <img src="img/magnets/13-brioche-cannelle.webp" alt="Magnet brioche à la cannelle" loading="lazy">
+  </div>
+  <p class="magnets-note">Version mini : quelques centimètres chacun ✦</p>
 
   <div class="pull-quote">
     "Le prétexte créatif, c'est juste<br>le moyen de se parler pour de vrai."
@@ -357,7 +395,7 @@
     </div>
     <div class="programme-row">
       <span class="programme-time">9h45</span>
-      <span class="programme-desc">Activité créative · on papote en faisant</span>
+      <span class="programme-desc">Atelier magnets de Noël · on papote en modelant</span>
     </div>
     <div class="programme-row">
       <span class="programme-time">11h00</span>

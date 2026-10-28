@@ -7,9 +7,10 @@ export const EVENTS = {
     page: '/reservation-paint-wine-22-octobre.html',
     price: 'price_1U2pUFAE8C0m7EE9Wrw6Qe5m', // 50€ HTVA + 21% TVA = 60,50€ TTC
     brevoList: 8, // « Sista - Paint & Wine 22/10/26 »
+    closed: true, // event passé
   },
   'petit-dejeuner-24-novembre': {
-    name: 'Petit-déjeuner créatif · SISTA 24 novembre',
+    name: 'Petit-déjeuner créatif · Magnets de Noël · SISTA 24 novembre',
     date: 'Mardi 24 novembre, 9h30–11h30',
     location: 'Bord de Meuse, Liège',
     page: '/reservation-petit-dejeuner-24-novembre.html',
@@ -40,6 +41,9 @@ export default async function handler(req, res) {
   const ev = EVENTS[eventId];
   if (!ev) {
     return res.status(400).json({ error: 'Event inconnu', eventId });
+  }
+  if (ev.closed) {
+    return res.status(410).json({ error: 'Les réservations sont fermées pour cet event', eventId });
   }
 
   const required = { firstName, lastName, email, companyName, vatNumber };

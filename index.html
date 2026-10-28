@@ -11,7 +11,6 @@
 <style>
   /* ── Fonts locales ───────────────────────────────────── */
   @font-face { font-family:'Ahsing'; src:url('fonts/ahsing-regular.otf') format('opentype'); font-weight:400 900; }
-  @font-face { font-family:'Le Petit Cochon'; src:url('fonts/nf-le-petit-cochon.ttf') format('truetype'); font-weight:400 900; }
   @font-face { font-family:'Gloria Hallelujah'; src:url('fonts/gloriahallelujah.ttf') format('truetype'); font-weight:400; }
   @font-face { font-family:'Bricolage Grotesque'; src:url('fonts/BricolageGrotesque-Regular.ttf') format('truetype'); font-weight:400; }
   @font-face { font-family:'Bricolage Grotesque'; src:url('fonts/BricolageGrotesque-Medium.ttf') format('truetype'); font-weight:500; }
@@ -66,7 +65,7 @@
     font-weight:700; font-size:11px; letter-spacing:.18em; text-transform:uppercase;
   }
   .marker{
-    font-family:'Le Petit Cochon','Gloria Hallelujah',cursive;
+    font-family:'Gloria Hallelujah',cursive;
     text-transform:uppercase; letter-spacing:.01em;
   }
   .gloria{ font-family:'Gloria Hallelujah',cursive; line-height:1.55; }
@@ -201,7 +200,7 @@
   .compare-card.non{ background:var(--cream); }
   .compare-card.oui{ background:var(--cobalt); color:var(--cream); }
   .compare-card-title{
-    font-family:'Le Petit Cochon','Gloria Hallelujah',cursive;
+    font-family:'Gloria Hallelujah',cursive;
     text-transform:uppercase;
     font-size:20px; margin:0 0 16px; line-height:1.2; display:block;
   }
@@ -234,7 +233,7 @@
   /* Positionnement créatif */
   .creative-tag{
     display:inline-flex; align-items:center; gap:6px;
-    font-family:'Le Petit Cochon','Gloria Hallelujah',cursive;
+    font-family:'Gloria Hallelujah',cursive;
     font-size:13px; letter-spacing:.04em; text-transform:uppercase;
     border:var(--border-main); border-radius:var(--radius-pill);
     padding:10px 18px; cursor:default;
@@ -267,7 +266,7 @@
   }
   .repars-item:last-child{ border-bottom:1.5px solid rgba(255,255,255,.2); }
   .repars-num{
-    font-family:'Le Petit Cochon','Gloria Hallelujah',cursive;
+    font-family:'Gloria Hallelujah',cursive;
     text-transform:uppercase; font-size:48px; line-height:1;
     color:var(--citron); flex:none; width:60px; text-align:right;
   }
@@ -281,9 +280,9 @@
     padding:64px 0;
   }
   .stat .wrap{ display:flex; align-items:center; gap:40px; flex-wrap:wrap; }
-  /* 75% en Le Petit Cochon */
+  /* 75% en Gloria Hallelujah */
   .stat .num{
-    font-family:'Le Petit Cochon','Gloria Hallelujah',cursive;
+    font-family:'Gloria Hallelujah',cursive;
     text-transform:uppercase;
     font-size:160px; color:var(--magenta); line-height:1; flex:none;
   }
@@ -306,7 +305,7 @@
   .pourqui{ background:var(--cream); }
   .pourqui-tags{ display:flex; gap:10px; flex-wrap:wrap; margin-top:20px; }
   .pourqui-tag{
-    font-family:'Le Petit Cochon','Gloria Hallelujah',cursive;
+    font-family:'Gloria Hallelujah',cursive;
     text-transform:uppercase;
     font-size:13px; letter-spacing:.04em;
     border:var(--border-main); border-radius:var(--radius-pill);
@@ -340,6 +339,20 @@
   .event-card .data{ font-family:'Space Mono',monospace; font-weight:700; font-size:13px; margin-bottom:4px; }
   .event-card .lieu{ opacity:.8; font-size:14px; margin-bottom:20px; }
   .event-aside{ padding-top:4px; }
+
+  /* ── Galerie ─────────────────────────────────────────── */
+  .galerie{ background:var(--blush); border-top:var(--border-main); border-bottom:var(--border-main); }
+  .galerie > .wrap > p{ max-width:560px; font-size:16px; }
+  .galerie-groupe{ margin:32px 0 28px; padding:12px 12px 48px; transform:rotate(-1deg); }
+  .galerie-groupe img{ width:100%; aspect-ratio:3/2; object-fit:cover; border-radius:4px; display:block; }
+  .galerie-groupe .polaroid-caption{ font-size:14px; bottom:12px; }
+  .galerie-toiles{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+  .galerie-toiles .polaroid{ padding:8px 8px 32px; }
+  .galerie-toiles .polaroid:nth-child(odd){ transform:rotate(-2deg); }
+  .galerie-toiles .polaroid:nth-child(even){ transform:rotate(1.5deg); }
+  .galerie-toiles .polaroid:hover{ transform:rotate(0) scale(1.05); box-shadow:8px 12px 0 var(--ink); z-index:2; }
+  .galerie-toiles img{ width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:4px; display:block; }
+  .galerie-toiles .polaroid-caption{ font-size:11px; }
 
   /* ── Signup ──────────────────────────────────────────── */
   .signup{ background:var(--cobalt); color:var(--cream); border-top:var(--border-main); }
@@ -388,6 +401,7 @@
     .compare{ grid-template-columns:1fr; }
     .synergy-grid{ grid-template-columns:1fr; }
     .events-grid{ grid-template-columns:1fr; }
+    .galerie-toiles{ grid-template-columns:repeat(2,1fr); gap:14px; }
     .hero-stack{ display:none; }
     .repars-text{ font-size:16px; }
     .repars-num{ font-size:36px; width:44px; }
@@ -451,13 +465,13 @@
       </div>
       <!-- Milieu gauche : Paint & Wine -->
       <div class="polaroid" style="width:240px;height:200px;top:130px;left:0;transform:rotate(-3deg);z-index:2;">
-        <img src="event-art-wine.jpg.webp" alt="Paint & Wine SISTA" style="width:100%;height:125px;object-fit:cover;border-radius:4px;display:block;">
+        <img src="img/galerie/paint-wine-groupe.jpg" alt="Paint & Wine SISTA" style="width:100%;height:125px;object-fit:cover;border-radius:4px;display:block;">
         <div class="polaroid-caption">Paint & Wine</div>
       </div>
       <!-- Bas droite : Petit-déjeuner -->
       <div class="polaroid" style="width:225px;height:185px;top:255px;right:20px;transform:rotate(2deg);z-index:3;">
-        <img src="petit-dejeuner-creatif.png" alt="Petit-déjeuner créatif" style="width:100%;height:110px;object-fit:cover;border-radius:4px;display:block;">
-        <div class="polaroid-caption">Petit-déjeuner créa</div>
+        <img src="img/atelier-magnets-noel.jpg" alt="Petit-déjeuner créatif : magnets de Noël" style="width:100%;height:110px;object-fit:cover;border-radius:4px;display:block;">
+        <div class="polaroid-caption">Petit-déj magnets de Noël</div>
       </div>
     </div>
   </div>
@@ -537,50 +551,75 @@
 <section class="event" style="position:relative;overflow:hidden;padding-top:20px;">
   <svg style="position:absolute;top:32px;right:48px;width:20px;height:20px;" viewBox="0 0 24 24"><path d="M12 0C12.4 9.2 14.8 11.6 24 12 14.8 12.4 12.4 14.8 12 24 11.6 14.8 9.2 12.4 0 12 9.2 11.6 12.4 9.2 12 0Z" fill="#E63C90" opacity=".35"/></svg>
   <div class="wrap">
-    <div class="kick" style="color:var(--magenta);">Les prochains rendez-vous</div>
-    <h2>Les deux premiers events.<br>En octobre et novembre.</h2>
+    <div class="kick" style="color:var(--magenta);">Les rendez-vous</div>
+    <h2>Octobre, on a peint.<br>Novembre, on modèle.</h2>
     <p style="font-size:15px;opacity:.7;margin-bottom:8px;">⚠️ Places limitées, laisse ton email pour être prévenue en avant-première.</p>
 
     <div class="events-grid" style="margin-top:24px;">
-      <!-- Event 1 -->
-      <div style="border:var(--border-main);border-radius:var(--radius-card);overflow:hidden;background:var(--cobalt);color:var(--cream);">
-        <div style="height:200px;overflow:hidden;position:relative;">
-          <img src="event-art-wine.jpg.webp" alt="Atelier Paint & Wine SISTA" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div style="display:none;height:200px;background:repeating-linear-gradient(45deg,#2E4ED8,#2E4ED8 8px,#6154DB 8px,#6154DB 16px);align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:10px;color:var(--cream);">PHOTO BORD DE MEUSE</div>
-          <span class="badge badge-magenta" style="position:absolute;top:12px;left:12px;font-size:9px;">⚡ Places limitées</span>
-        </div>
-        <div style="padding:24px;position:relative;">
-          <svg style="position:absolute;top:14px;right:14px;width:16px;height:16px;" viewBox="0 0 24 24"><path d="M12 0C12.4 9.2 14.8 11.6 24 12 14.8 12.4 12.4 14.8 12 24 11.6 14.8 9.2 12.4 0 12 9.2 11.6 12.4 9.2 12 0Z" fill="#B5D62A"/></svg>
-          <div class="kick" style="color:var(--citron);">Apéro Paint &amp; Wine · #1</div>
-          <h3 style="font-size:26px;font-weight:800;margin:8px 0 12px;line-height:1.05;">Atelier<br>Paint &amp; Wine</h3>
-          <div class="kick" style="color:var(--citron);margin-bottom:4px;">JEU 22 OCT · 18H–22H</div>
-          <div style="opacity:.75;font-size:14px;margin-bottom:20px;">Bord de Meuse · Liège · 50€ HTVA · planche apéro incluse</div>
-          <div style="display:flex;gap:8px;">
-            <a href="event-paint-wine-22-octobre.html" class="btn" style="flex:1;text-align:center;background:transparent;border-color:var(--cream);color:var(--cream);padding:14px 12px;">En savoir plus</a>
-            <a href="reservation-paint-wine-22-octobre.html" class="btn btn-citron" style="flex:1;text-align:center;padding:14px 12px;">Je réserve ✦</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Event 2 -->
+      <!-- Event 2 : prochain rendez-vous -->
       <div style="border:var(--border-main);border-radius:var(--radius-card);overflow:hidden;background:var(--periwinkle);color:var(--cream);">
         <div style="height:200px;overflow:hidden;position:relative;">
-          <img src="petit-dejeuner-creatif.png" alt="Petit-déjeuner créatif" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="img/atelier-magnets-noel.jpg" alt="Mini magnets de Noël en pâte polymère" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div style="display:none;height:200px;background:repeating-linear-gradient(45deg,#6154DB,#6154DB 8px,#9AC2E9 8px,#9AC2E9 16px);align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:10px;color:var(--cream);">PHOTO À VENIR</div>
           <span class="badge badge-magenta" style="position:absolute;top:12px;left:12px;font-size:9px;">⚡ Réservations ouvertes</span>
         </div>
         <div style="padding:24px;position:relative;">
           <svg style="position:absolute;top:14px;right:14px;width:16px;height:16px;" viewBox="0 0 24 24"><path d="M12 0C12.4 9.2 14.8 11.6 24 12 14.8 12.4 12.4 14.8 12 24 11.6 14.8 9.2 12.4 0 12 9.2 11.6 12.4 9.2 12 0Z" fill="#EEF0A6"/></svg>
-          <div class="kick" style="color:var(--citron);">Petit-déjeuner créa · #2</div>
-          <h3 style="font-size:26px;font-weight:800;margin:8px 0 12px;line-height:1.05;">Petit-déjeuner<br>créatif</h3>
+          <div class="kick" style="color:var(--citron);">Petit-déjeuner créatif · #2</div>
+          <h3 style="font-size:26px;font-weight:800;margin:8px 0 12px;line-height:1.05;">Atelier<br>magnets de Noël</h3>
           <div class="kick" style="color:var(--citron);margin-bottom:4px;">MAR 24 NOV · 9H30–11H30</div>
-          <div style="opacity:.75;font-size:14px;margin-bottom:20px;">Bord de Meuse · Liège · 35€ HTVA · limité à 15 places</div>
+          <div style="opacity:.75;font-size:14px;margin-bottom:20px;">Bord de Meuse · Liège · 35€ HTVA · petit-déj et matériel inclus · 15 places</div>
           <div style="display:flex;gap:8px;">
             <a href="event-petit-dejeuner-24-novembre.html" class="btn" style="flex:1;text-align:center;background:transparent;border-color:var(--cream);color:var(--cream);padding:14px 12px;">En savoir plus</a>
             <a href="reservation-petit-dejeuner-24-novembre.html" class="btn btn-citron" style="flex:1;text-align:center;padding:14px 12px;">Je réserve ✦</a>
           </div>
         </div>
       </div>
+
+      <!-- Event 1 : passé -->
+      <div style="border:var(--border-main);border-radius:var(--radius-card);overflow:hidden;background:var(--cobalt);color:var(--cream);">
+        <div style="height:200px;overflow:hidden;position:relative;">
+          <img src="img/galerie/paint-wine-groupe.jpg" alt="Atelier Paint & Wine SISTA" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div style="display:none;height:200px;background:repeating-linear-gradient(45deg,#2E4ED8,#2E4ED8 8px,#6154DB 8px,#6154DB 16px);align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:10px;color:var(--cream);">PHOTO BORD DE MEUSE</div>
+          <span class="badge badge-citron" style="position:absolute;top:12px;left:12px;font-size:9px;color:var(--ink);">✦ Événement passé</span>
+        </div>
+        <div style="padding:24px;position:relative;">
+          <svg style="position:absolute;top:14px;right:14px;width:16px;height:16px;" viewBox="0 0 24 24"><path d="M12 0C12.4 9.2 14.8 11.6 24 12 14.8 12.4 12.4 14.8 12 24 11.6 14.8 9.2 12.4 0 12 9.2 11.6 12.4 9.2 12 0Z" fill="#B5D62A"/></svg>
+          <div class="kick" style="color:var(--citron);">Apéro Paint &amp; Wine · #1</div>
+          <h3 style="font-size:26px;font-weight:800;margin:8px 0 12px;line-height:1.05;">Atelier<br>Paint &amp; Wine</h3>
+          <div class="kick" style="color:var(--citron);margin-bottom:4px;">C'ÉTAIT LE JEU 22 OCT</div>
+          <div style="opacity:.75;font-size:14px;margin-bottom:20px;">Des pinceaux, du vin, des tableaux et beaucoup de rires au Bord de Meuse. Merci à toutes celles qui étaient là ✦</div>
+          <div style="display:flex;gap:8px;">
+            <a href="#galerie" class="btn" style="flex:1;text-align:center;background:transparent;border-color:var(--cream);color:var(--cream);padding:14px 12px;">Voir les photos ↓</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GALERIE ═════════════════════════════════════════════ -->
+<section class="galerie" id="galerie" style="position:relative;overflow:hidden;">
+  <svg style="position:absolute;top:36px;right:56px;width:24px;height:24px;" viewBox="0 0 24 24"><path d="M12 0C12.4 9.2 14.8 11.6 24 12 14.8 12.4 12.4 14.8 12 24 11.6 14.8 9.2 12.4 0 12 9.2 11.6 12.4 9.2 12 0Z" fill="#E63C90" opacity=".5"/></svg>
+  <div class="wrap">
+    <div class="kick" style="color:var(--magenta);">En vrai · 22 octobre</div>
+    <h2>Le premier Paint &amp; Wine.</h2>
+    <p>Une quinzaine d'entrepreneuses, des toiles blanches, un verre de vin. Personne ne se connaissait vraiment en arrivant. Voilà ce qu'on a ramené à la maison.</p>
+
+    <div class="polaroid galerie-groupe">
+      <img src="img/galerie/paint-wine-groupe.jpg" alt="Les participantes du Paint & Wine SISTA posent avec leurs toiles au Bord de Meuse" loading="lazy">
+      <div class="polaroid-caption">Les Sista du 22 octobre, toiles en main ✦</div>
+    </div>
+
+    <div class="galerie-toiles">
+      <div class="polaroid"><img src="img/galerie/toile-01.jpg" alt="Toile : deux visages abstraits aux tons roses" loading="lazy"><div class="polaroid-caption">Visages</div></div>
+      <div class="polaroid"><img src="img/galerie/toile-02.jpg" alt="Toile : un cœur rose et des flammes orange" loading="lazy"><div class="polaroid-caption">Cœur en feu</div></div>
+      <div class="polaroid"><img src="img/galerie/toile-03.jpg" alt="Toile : lune jaune sur des collines roses" loading="lazy"><div class="polaroid-caption">Clair de lune</div></div>
+      <div class="polaroid"><img src="img/galerie/toile-04.jpg" alt="Toile : chat noir sur fond orange" loading="lazy"><div class="polaroid-caption">Le chat</div></div>
+      <div class="polaroid"><img src="img/galerie/toile-05.jpg" alt="Toile : citrouille rose sous une couronne de feuilles" loading="lazy"><div class="polaroid-caption">Citrouille</div></div>
+      <div class="polaroid"><img src="img/galerie/toile-06.jpg" alt="Toile : arbres d'automne sur fond bleu" loading="lazy"><div class="polaroid-caption">Automne</div></div>
+      <div class="polaroid"><img src="img/galerie/toile-07.jpg" alt="Toile : carrés bleus, « Au fil de l'eau »" loading="lazy"><div class="polaroid-caption">Au fil de l'eau</div></div>
+      <div class="polaroid"><img src="img/galerie/toile-08.jpg" alt="Toile : vague de couleurs vives" loading="lazy"><div class="polaroid-caption">La vague</div></div>
     </div>
   </div>
 </section>
